@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iDental — Pieraksts / Запись</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {tt
+      --teal: #1A6B5A;
+      --teal-light: #E6F2EF;
+      --teal-dark: #135245;
+      --gold: #BFA26A;
+      --gold-light: #FDF8F0;
+      --bg: #F7F6F3;
+      --card: #FFFFFF;
+      --text: #1C1C1C;
+      --muted: #7A7F88;
+      --border: #E2E4E8;
+      --focus: #1A6B5A;
+      --ok: #0E8A62;
+      --ok-bg: #EEFBF5;
+      --radius: 14px;
+      --radius-sm: 10px;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 600px 600px at 80% -10%, rgba(26,107,90,0.07), transparent),
+        radial-gradient(ellipse 500px 500px at -10% 90%, rgba(191,162,106,0.06), transparent);
+      pointer-events: none;
+    }
+
+    /* ---- lang toggle ---- */
+    .lang { position: fixed; top: 16px; right: 16px; display: flex; gap: 2px; background: var(--card); border-radius: 28px; padding: 3px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); z-index: 50; }
+    .lang button { padding: 7px 15px; border: none; background: 0; font-family: inherit; font-size: 12px; font-weight: 600; color: var(--muted); border-radius: 24px; cursor: pointer; transition: .2s; letter-spacing: .6px; }
+    .lang button.on { background: var(--teal); color: #fff; }
+
+    /* ---- layout ---- */
+    .wrap { position: relative; z-index: 1; max-width: 500px; margin: 0 auto; padding: 36px 18px 56px; }
+
+    /* ---- header ---- */
+    .hdr { text-align: center; margin-bottom: 30px; }
+    .logo { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 700; color: var(--teal); letter-spacing: -.3px; }
+    .logo b { color: var(--gold); font-weight: 700; }
+    .hdr p { font-size: 14px; color: var(--muted); margin-top: 2px; font-weight: 400; }
+
+    /* ---- progress ---- */
+    .prog { display: flex; justify-content: center; gap: 8px; margin-bottom: 28px; }
+    .prog i { display: block; width: 36px; height: 3.5px; border-radius: 3px; background: var(--border); transition: .35s; }
+    .prog i.now { background: var(--teal); width: 52px; }
+    .prog i.ok { background: var(--gold); }
+
+    /* ---- card ---- */
+    .card { background: var(--card); border-radius: var(--radius); box-shadow: 0 4px 24px rgba(0,0,0,0.06); padding: 30px 28px; animation: up .35s ease; }
+    @keyframes up { from { opacity: 0; transform: translateY(10px); } }
+    .card.hide { display: none; }
+    .tag { font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+    .title { font-family: 'Cormorant Garamond', serif; font-size: 23px; font-weight: 600; line-height: 1.25; margin-bottom: 22px; }
+
+    /* ---- fields ---- */
+    .f { margin-bottom: 16px; }
+    .f label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 5px; }
+    .f input, .f select { width: 100%; padding: 11px 14px; border: 1.5px solid var(--border); border-radius: var(--radius-sm); font-family: inherit; font-size: 14.5px; color: var(--text); background: var(--bg); outline: none; transition: .2s; -webkit-appearance: none; }
+    .f input:focus, .f select:focus { border-color: var(--focus); background: #fff; box-shadow: 0 0 0 3px rgba(26,107,90,.08); }
+    .f input::placeholder { color: #B8BCC4; }
+
+    /* ---- option grid (services) ---- */
+    .ogrid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .ocard { padding: 15px 12px; border: 1.5px solid var(--border); border-radius: var(--radius-sm); cursor: pointer; background: var(--bg); text-align: center; transition: .2s; }
+    .ocard:hover { border-color: var(--teal); background: var(--teal-light); }
+    .ocard.sel { border-color: var(--teal); background: var(--teal-light); box-shadow: 0 0 0 3px rgba(26,107,90,.1); }
+    .ocard .ic { font-size: 26px; margin-bottom: 6px; }
+    .ocard .nm { font-size: 13px; font-weight: 600; }
+    .ocard .ds { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+    /* ---- doctors ---- */
+    .dgrid { display: grid; gap: 10px; }
+    .dcard { display: flex; align-items: center; gap: 13px; padding: 13px 15px; border: 1.5px solid var(--border); border-radius: var(--radius-sm); cursor: pointer; background: var(--bg); transition: .2s; }
+    .dcard:hover { border-color: var(--teal); background: var(--teal-light); }
+    .dcard.sel { border-color: var(--teal); background: var(--teal-light); box-shadow: 0 0 0 3px rgba(26,107,90,.1); }
+    .av { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, var(--teal), var(--gold)); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 14px; flex-shrink: 0; }
+    .dcard .nm { font-size: 14px; font-weight: 600; }
+    .dcard .sp { font-size: 12px; color: var(--muted); }
+
+    /* ---- calendar ---- */
+    .cal-hdr { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+    .cal-hdr span { font-weight: 600; font-size: 15px; }
+    .cal-nav { display: flex; gap: 5px; }
+    .cal-nav button { width: 30px; height: 30px; border: 1.5px solid var(--border); border-radius: 50%; background: #fff; cursor: pointer; font-size: 13px; transition: .15s; color: var(--text); display: flex; align-items: center; justify-content: center; }
+    .cal-nav button:hover { border-color: var(--teal); color: var(--teal); }
+    .cgrid { display: grid; grid-template-columns: repeat(7,1fr); gap: 3px; margin-bottom: 18px; }
+    .cgrid .lbl { font-size: 11px; font-weight: 600; color: var(--muted); text-align: center; padding: 5px 0; }
+    .cgrid .d { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 13px; cursor: pointer; transition: .12s; font-weight: 500; }
+    .cgrid .d:hover:not(.off):not(.mt) { background: var(--teal-light); color: var(--teal); }
+    .cgrid .d.sel { background: var(--teal); color: #fff; font-weight: 700; }
+    .cgrid .d.td { box-shadow: inset 0 0 0 1.5px var(--gold); }
+    .cgrid .d.off { color: #D4D6DA; cursor: default; }
+    .cgrid .d.mt { cursor: default; }
+
+    .tlbl { font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+    .tgrid { display: grid; grid-template-columns: repeat(4,1fr); gap: 7px; }
+    .ts { padding: 10px 6px; border: 1.5px solid var(--border); border-radius: var(--radius-sm); text-align: center; font-size: 13px; font-weight: 500; cursor: pointer; transition: .15s; background: var(--bg); }
+    .ts:hover { border-color: var(--teal); background: var(--teal-light); }
+    .ts.sel { border-color: var(--teal); background: var(--teal); color: #fff; }
+
+    /* ---- buttons ---- */
+    .brow { display: flex; gap: 10px; margin-top: 22px; }
+    .btn { flex: 1; padding: 13px 22px; border: none; border-radius: var(--radius-sm); font-family: inherit; font-size: 14.5px; font-weight: 600; cursor: pointer; transition: .2s; letter-spacing: .2px; }
+    .btn-p { background: var(--teal); color: #fff; }
+    .btn-p:hover { background: var(--teal-dark); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(26,107,90,.2); }
+    .btn-p:disabled { background: #B0C4BC; cursor: not-allowed; transform: none; box-shadow: none; }
+    .btn-b { background: 0; color: var(--muted); border: 1.5px solid var(--border); flex: 0 0 auto; padding: 13px 18px; }
+    .btn-b:hover { border-color: var(--muted); color: var(--text); }
+
+    /* ---- success ---- */
+    .suc { text-align: center; padding: 16px 0; }
+    .suc-ic { width: 68px; height: 68px; background: var(--ok-bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; animation: pop .45s cubic-bezier(.175,.885,.32,1.275); }
+    @keyframes pop { 0% { transform: scale(0); } 100% { transform: scale(1); } }
+    .suc-ic svg { width: 30px; height: 30px; color: var(--ok); }
+    .suc h2 { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 600; margin-bottom: 8px; }
+    .suc p { color: var(--muted); font-size: 14.5px; line-height: 1.55; }
+    .summ { background: var(--bg); border-radius: var(--radius-sm); padding: 16px; margin-top: 18px; text-align: left; }
+    .summ .r { display: flex; justify-content: space-between; padding: 5px 0; font-size: 13.5px; }
+    .summ .l { color: var(--muted); }
+    .summ .v { font-weight: 600; }
+
+    .foot { text-align: center; margin-top: 24px; font-size: 11.5px; color: #B8BCC4; }
+    .foot a { color: var(--teal); text-decoration: none; }
+
+    .spin { display: inline-block; width: 16px; height: 16px; border: 2.5px solid rgba(255,255,255,.3); border-radius: 50%; border-top-color: #fff; animation: sp .6s linear infinite; vertical-align: middle; margin-right: 7px; }
+    @keyframes sp { to { transform: rotate(360deg); } }
+
+    @media(max-width:480px) {
+      .wrap { padding: 20px 14px 36px; }
+      .card { padding: 22px 18px; }
+      .tgrid { grid-template-columns: repeat(3,1fr); }
+      .logo { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="lang">
+  <button class="on" onclick="setLang('lv')">LAT</button>
+  <button onclick="setLang('ru')">РУС</button>
+</div>
+
+<div class="wrap">
+  <div class="hdr">
+    <div class="logo">i<b>Dental</b></div>
+    <p data-lv="Pieraksts vizītei" data-ru="Запись на приём"></p>
+  </div>
+
+  <div class="prog">
+    <i class="now" id="p1"></i>
+    <i id="p2"></i>
+    <i id="p3"></i>
+  </div>
+
+  <!-- STEP 1 -->
+  <div class="card" id="s1">
+    <div class="tag" data-lv="1. SOLIS" data-ru="1. ШАГ"></div>
+    <div class="title" data-lv="Kontaktinformācija" data-ru="Контактная информация"></div>
+    <div class="f">
+      <label data-lv="Vārds, Uzvārds" data-ru="Имя, Фамилия"></label>
+      <input type="text" id="i-name" data-lv-ph="Jānis Bērziņš" data-ru-ph="Иван Иванов">
+    </div>
+    <div class="f">
+      <label data-lv="Tālrunis" data-ru="Телефон"></label>
+      <input type="tel" id="i-phone" placeholder="+371 2XXXXXXX">
+    </div>
+    <div class="f">
+      <label data-lv="E-pasts" data-ru="E-mail"></label>
+      <input type="email" id="i-email" data-lv-ph="janis@epasts.lv" data-ru-ph="ivan@mail.lv">
+    </div>
+    <div class="brow">
+      <button class="btn btn-p" onclick="go(2)" data-lv="Turpināt" data-ru="Продолжить"></button>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="card hide" id="s2">
+    <div class="tag" data-lv="2. SOLIS" data-ru="2. ШАГ"></div>
+    <div class="title" data-lv="Pakalpojums un ārsts" data-ru="Услуга и врач"></div>
+    <label style="font-size:13px;font-weight:600;margin-bottom:8px;display:block" data-lv="Izvēlieties pakalpojumu" data-ru="Выберите услугу"></label>
+    <div class="ogrid" id="svc-g"></div>
+    <label style="font-size:13px;font-weight:600;margin:16px 0 8px;display:block" data-lv="Izvēlieties ārstu" data-ru="Выберите врача"></label>
+    <div class="dgrid" id="doc-g"></div>
+    <div class="brow">
+      <button class="btn btn-b" onclick="go(1)" data-lv="Atpakaļ" data-ru="Назад"></button>
+      <button class="btn btn-p" onclick="go(3)" data-lv="Turpināt" data-ru="Продолжить"></button>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="card hide" id="s3">
+    <div class="tag" data-lv="3. SOLIS" data-ru="3. ШАГ"></div>
+    <div class="title" data-lv="Datums un laiks" data-ru="Дата и время"></div>
+    <div class="cal-hdr">
+      <span id="cm"></span>
+      <div class="cal-nav"><button onclick="cNav(-1)">‹</button><button onclick="cNav(1)">›</button></div>
+    </div>
+    <div class="cgrid" id="cg"></div>
+    <div class="tlbl" data-lv="Pieejamie laiki" data-ru="Доступное время"></div>
+    <div class="tgrid" id="tg"></div>
+    <div class="brow">
+      <button class="btn btn-b" onclick="go(2)" data-lv="Atpakaļ" data-ru="Назад"></button>
+      <button class="btn btn-p" id="btn-ok" onclick="submit()" data-lv="Apstiprināt" data-ru="Подтвердить"></button>
+    </div>
+  </div>
+
+  <!-- SUCCESS -->
+  <div class="card hide" id="s4">
+    <div class="suc">
+      <div class="suc-ic"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div>
+      <h2 data-lv="Pieraksts apstiprināts!" data-ru="Запись подтверждена!"></h2>
+      <p data-lv="Mēs nosūtīsim apstiprinājumu uz Jūsu e-pastu." data-ru="Мы отправим подтверждение на вашу почту."></p>
+      <div class="summ" id="summ"></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span data-lv="Pierakstu nodrošina" data-ru="Запись обеспечена"></span> <a href="#">iDental</a> · Tērbatas iela 78, Rīga
+  </div>
+</div>
+
+<script>
+// ===================== CONFIG =====================
+// ЗАМЕНИ ЭТУ ССЫЛКУ на реальный webhook URL из n8n (нода "Booking Webhook")
+const WEBHOOK = 'https://demmssss.app.n8n.cloud/webhook-test/booking';
+
+const SVC = [
+  { id:'apskate', ic:'🦷', lv:'Zobu apskate', ru:'Осмотр', lv_d:'~30 min', ru_d:'~30 мин' },
+  { id:'higiena', ic:'✨', lv:'Zobu higiēna', ru:'Гигиена', lv_d:'~45 min', ru_d:'~45 мин' },
+  { id:'plombesana', ic:'🔧', lv:'Plombēšana', ru:'Пломбирование', lv_d:'~60 min', ru_d:'~60 мин' },
+  { id:'balosana', ic:'💎', lv:'Zobu balošana', ru:'Отбеливание', lv_d:'~90 min', ru_d:'~90 мин' }
+];
+const DOC = [
+  { id:'dr1', name:'Dr. Ieva Liepiņa', lv_s:'Vispārējā zobārstniecība', ru_s:'Общая стоматология', ini:'IL' },
+  { id:'dr2', name:'Dr. Mārtiņš Kalniņš', lv_s:'Zobu higiēnists', ru_s:'Гигиенист', ini:'MK' },
+  { id:'dr3', name:'Dr. Anna Ozoliņa', lv_s:'Estētiskā zobārstniecība', ru_s:'Эстетическая стоматология', ini:'AO' }
+];
+const SLOTS = ['09:00','09:30','10:00','10:30','11:00','11:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30'];
+const DL = { lv:['Pr','Ot','Tr','Ce','Pk','Se','Sv'], ru:['Пн','Вт','Ср','Чт','Пт','Сб','Вс'] };
+const MN = { lv:['Janvāris','Februāris','Marts','Aprīlis','Maijs','Jūnijs','Jūlijs','Augusts','Septembris','Oktobris','Novembris','Decembris'], ru:['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'] };
+
+// ===================== STATE =====================
+let L='lv', step=1, pickedSvc=null, pickedDoc=null, pickedDate=null, pickedTime=null;
+let cY, cM;
+const token = new URLSearchParams(location.search).get('token') || '';
+
+// ===================== LANG =====================
+function setLang(l) {
+  L=l;
+  document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('on', b.textContent===(l==='lv'?'LAT':'РУС')));
+  document.querySelectorAll('[data-lv]').forEach(e=>e.textContent=e.getAttribute('data-'+l));
+  document.querySelectorAll('[data-lv-ph]').forEach(e=>e.placeholder=e.getAttribute('data-'+l+'-ph')||'');
+  rSvc(); rDoc(); rCal(); rTime();
+}
+
+// ===================== RENDER =====================
+function rSvc() {
+  document.getElementById('svc-g').innerHTML = SVC.map(s=>`<div class="ocard${pickedSvc===s.id?' sel':''}" onclick="pickedSvc='${s.id}';rSvc()"><div class="ic">${s.ic}</div><div class="nm">${s[L]}</div><div class="ds">${s[L+'_d']}</div></div>`).join('');
+}
+function rDoc() {
+  document.getElementById('doc-g').innerHTML = DOC.map(d=>`<div class="dcard${pickedDoc===d.id?' sel':''}" onclick="pickedDoc='${d.id}';rDoc()"><div class="av">${d.ini}</div><div><div class="nm">${d.name}</div><div class="sp">${d[L==='lv'?'lv_s':'ru_s']}</div></div></div>`).join('');
+}
+function rCal() {
+  const el=document.getElementById('cg'), me=document.getElementById('cm');
+  me.textContent=MN[L][cM]+' '+cY;
+  const f=new Date(cY,cM,1); let s=f.getDay()-1; if(s<0) s=6;
+  const dim=new Date(cY,cM+1,0).getDate(), today=new Date(); today.setHours(0,0,0,0);
+  let h=DL[L].map(d=>`<div class="lbl">${d}</div>`).join('');
+  for(let i=0;i<s;i++) h+='<div class="d mt"></div>';
+  for(let d=1;d<=dim;d++){
+    const dt=new Date(cY,cM,d), past=dt<today, sun=dt.getDay()===0, dis=past||sun;
+    const isTd=dt.getTime()===today.getTime(), isSel=pickedDate&&pickedDate.getTime()===dt.getTime();
+    let c='d'; if(dis) c+=' off'; if(isTd) c+=' td'; if(isSel) c+=' sel';
+    h+=`<div class="${c}"${dis?'':`onclick="pickDate(${cY},${cM},${d})"`}>${d}</div>`;
+  }
+  el.innerHTML=h;
+}
+function rTime() {
+  document.getElementById('tg').innerHTML = SLOTS.map(t=>`<div class="ts${pickedTime===t?' sel':''}" onclick="pickedTime='${t}';rTime()">${t}</div>`).join('');
+}
+function pickDate(y,m,d){ pickedDate=new Date(y,m,d); rCal(); rTime(); }
+function cNav(dir){ cM+=dir; if(cM>11){cM=0;cY++;} if(cM<0){cM=11;cY--;} rCal(); }
+
+// ===================== NAV =====================
+function go(s) {
+  if(s===2 && step===1){
+    const nm=document.getElementById('i-name').value.trim(), ph=document.getElementById('i-phone').value.trim(), em=document.getElementById('i-email').value.trim();
+    if(!nm||!ph||!em){ alert(L==='lv'?'Lūdzu, aizpildiet visus laukus':'Пожалуйста, заполните все поля'); return; }
+  }
+  if(s===3 && step===2){
+    if(!pickedSvc||!pickedDoc){ alert(L==='lv'?'Lūdzu, izvēlieties pakalpojumu un ārstu':'Выберите услугу и врача'); return; }
+  }
+  document.querySelectorAll('.card').forEach(c=>c.classList.add('hide'));
+  document.getElementById('s'+s).classList.remove('hide');
+  for(let i=1;i<=3;i++){
+    const e=document.getElementById('p'+i);
+    e.className=i<s?'ok':i===s?'now':'';
+  }
+  step=s;
+}
+
+// ===================== SUBMIT =====================
+async function submit() {
+  if(!pickedDate||!pickedTime){ alert(L==='lv'?'Lūdzu, izvēlieties datumu un laiku':'Выберите дату и время'); return; }
+  const btn=document.getElementById('btn-ok');
+  btn.innerHTML='<span class="spin"></span>'+(L==='lv'?'Apstrādā...':'Обработка...');
+  btn.disabled=true;
+
+  const svc=SVC.find(s=>s.id===pickedSvc), doc=DOC.find(d=>d.id===pickedDoc);
+  const dateStr=pickedDate.toISOString().split('T')[0];
+  const booking = {
+    name: document.getElementById('i-name').value.trim(),
+    phone: document.getElementById('i-phone').value.trim(),
+    email: document.getElementById('i-email').value.trim(),
+    service_id: pickedSvc,
+    service_name: svc[L],
+    doctor_id: pickedDoc,
+    doctor_name: doc.name,
+    date: dateStr,
+    time: pickedTime,
+    token: token,
+    lang: L,
+    booked_at: new Date().toISOString()
+  };
+
+  try { await fetch(WEBHOOK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(booking),mode:'no-cors'}); } catch(e){}
+
+  // success screen
+  document.querySelectorAll('.card').forEach(c=>c.classList.add('hide'));
+  document.getElementById('s4').classList.remove('hide');
+  document.querySelectorAll('.prog i').forEach(p=>p.className='ok');
+
+  const lb={lv:{s:'Pakalpojums',d:'Ārsts',dt:'Datums',t:'Laiks'},ru:{s:'Услуга',d:'Врач',dt:'Дата',t:'Время'}}[L];
+  const fd=pickedDate.toLocaleDateString(L==='lv'?'lv-LV':'ru-RU',{weekday:'long',day:'numeric',month:'long'});
+  document.getElementById('summ').innerHTML=`
+    <div class="r"><span class="l">${lb.s}</span><span class="v">${svc[L]}</span></div>
+    <div class="r"><span class="l">${lb.d}</span><span class="v">${doc.name}</span></div>
+    <div class="r"><span class="l">${lb.dt}</span><span class="v">${fd}</span></div>
+    <div class="r"><span class="l">${lb.t}</span><span class="v">${pickedTime}</span></div>`;
+}
+
+// ===================== INIT =====================
+const now=new Date(); cY=now.getFullYear(); cM=now.getMonth();
+setLang('lv'); rTime();
+</script>
+</body>
+</html>
