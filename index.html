@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root {tt
+    :root {
       --teal: #1A6B5A;
       --teal-light: #E6F2EF;
       --teal-dark: #135245;
@@ -238,8 +238,8 @@
 
 <script>
 // ===================== CONFIG =====================
-// ЗАМЕНИ ЭТУ ССЫЛКУ на реальный webhook URL из n8n (нода "Booking Webhook")
-const WEBHOOK = 'https://demmssss.app.n8n.cloud/webhook-test/booking';
+const WEBHOOK_LEAD    = 'https://demmssss.app.n8n.cloud/webhook-test/lead-capture';
+const WEBHOOK_BOOKING = 'https://demmssss.app.n8n.cloud/webhook-test/booking';
 
 const SVC = [
   { id:'apskate', ic:'🦷', lv:'Zobu apskate', ru:'Осмотр', lv_d:'~30 min', ru_d:'~30 мин' },
@@ -303,6 +303,13 @@ function go(s) {
   if(s===2 && step===1){
     const nm=document.getElementById('i-name').value.trim(), ph=document.getElementById('i-phone').value.trim(), em=document.getElementById('i-email').value.trim();
     if(!nm||!ph||!em){ alert(L==='lv'?'Lūdzu, aizpildiet visus laukus':'Пожалуйста, заполните все поля'); return; }
+    // ── Lead Capture: отправляем лида при переходе на шаг 2 ──
+    fetch(WEBHOOK_LEAD, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ name: nm, phone: ph, email: em, lang: L, source: 'booking_form', created_at: new Date().toISOString() }),
+      mode: 'no-cors'
+    }).catch(()=>{});
   }
   if(s===3 && step===2){
     if(!pickedSvc||!pickedDoc){ alert(L==='lv'?'Lūdzu, izvēlieties pakalpojumu un ārstu':'Выберите услугу и врача'); return; }
@@ -318,7 +325,7 @@ function go(s) {
 
 // ===================== SUBMIT =====================
 async function submit() {
-  if(!pickedDate||!pickedTime){ alert(L==='lv'?'Lūdzu, izvēlieties datumu un laiku':'Выберите дату и время'); return; }
+  if(!pickedDate||!pickedTime){ alert(L==='lv'?'Lūdzu, izvēlieties datumu un laiku':'Выберите дату un laiku'); return; }
   const btn=document.getElementById('btn-ok');
   btn.innerHTML='<span class="spin"></span>'+(L==='lv'?'Apstrādā...':'Обработка...');
   btn.disabled=true;
@@ -340,7 +347,7 @@ async function submit() {
     booked_at: new Date().toISOString()
   };
 
-  try { await fetch(WEBHOOK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(booking),mode:'no-cors'}); } catch(e){}
+  try { await fetch(WEBHOOK_BOOKING,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(booking),mode:'no-cors'}); } catch(e){}
 
   // success screen
   document.querySelectorAll('.card').forEach(c=>c.classList.add('hide'));
