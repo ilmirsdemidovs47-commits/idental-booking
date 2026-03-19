@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iDental — Atcelt pierakstu / Отменить запись</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --teal:#1A6B5A; --teal-light:#E6F2EF; --gold:#BFA26A; --bg:#F7F6F3; --card:#FFF; --text:#1C1C1C; --muted:#7A7F88; --border:#E2E4E8; --red:#DC2626; --red-light:#FEF2F2; --radius:14px; }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
+    body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 600px 600px at 80% -10%,rgba(26,107,90,.07),transparent),radial-gradient(ellipse 500px 500px at -10% 90%,rgba(191,162,106,.06),transparent);pointer-events:none}
+    .lang{position:fixed;top:16px;right:16px;display:flex;gap:2px;background:var(--card);border-radius:28px;padding:3px;box-shadow:0 2px 12px rgba(0,0,0,.07);z-index:50}
+    .lang button{padding:7px 15px;border:none;background:0;font-family:inherit;font-size:12px;font-weight:600;color:var(--muted);border-radius:24px;cursor:pointer;transition:.2s;letter-spacing:.6px}
+    .lang button.on{background:var(--teal);color:#fff}
+    .wrap{position:relative;z-index:1;max-width:460px;margin:0 auto;padding:60px 18px}
+    .logo{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:700;color:var(--teal);text-align:center;margin-bottom:32px}
+    .logo b{color:var(--gold)}
+    .card{background:var(--card);border-radius:var(--radius);box-shadow:0 4px 24px rgba(0,0,0,.06);padding:32px 28px;text-align:center;animation:up .35s ease}
+    @keyframes up{from{opacity:0;transform:translateY(10px)}}
+    .card.hide{display:none}
+    .ic{width:64px;height:64px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:16px}
+    .ic-warn{background:var(--red-light)}
+    .ic-ok{background:var(--teal-light)}
+    .card h2{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;margin-bottom:12px}
+    .card p{color:var(--muted);font-size:14.5px;line-height:1.55;margin-bottom:20px}
+    .brow{display:flex;gap:10px;justify-content:center}
+    .btn{padding:13px 24px;border:none;border-radius:10px;font-family:inherit;font-size:14.5px;font-weight:600;cursor:pointer;transition:.2s}
+    .btn-red{background:var(--red);color:#fff}
+    .btn-red:hover{background:#b91c1c}
+    .btn-gray{background:0;color:var(--muted);border:1.5px solid var(--border)}
+    .btn-gray:hover{border-color:var(--muted);color:var(--text)}
+    .btn-teal{background:var(--teal);color:#fff}
+    .btn-teal:hover{background:#15574A}
+    .spin{display:inline-block;width:16px;height:16px;border:2.5px solid rgba(255,255,255,.3);border-radius:50%;border-top-color:#fff;animation:sp .6s linear infinite;vertical-align:middle;margin-right:6px}
+    @keyframes sp{to{transform:rotate(360deg)}}
+    .foot{text-align:center;margin-top:24px;font-size:11.5px;color:#B8BCC4}
+    .foot a{color:var(--teal);text-decoration:none}
+  </style>
+</head>
+<body>
+
+<div class="lang">
+  <button class="on" onclick="setL('lv')">LAT</button>
+  <button onclick="setL('ru')">РУС</button>
+</div>
+
+<div class="wrap">
+  <div class="logo">i<b>Dental</b></div>
+
+  <!-- Confirm cancel -->
+  <div class="card" id="s1">
+    <div class="ic ic-warn">⚠️</div>
+    <h2 data-lv="Atcelt pierakstu?" data-ru="Отменить запись?"></h2>
+    <p data-lv="Vai tiešām vēlaties atcelt savu pierakstu? Mēs labprāt Jūs sagaidīsim citā laikā." data-ru="Вы уверены, что хотите отменить запись? Мы будем рады принять вас в другое время."></p>
+    <div class="brow">
+      <button class="btn btn-gray" onclick="goBack()" data-lv="Nē, paturēt" data-ru="Нет, оставить"></button>
+      <button class="btn btn-red" id="btn-cancel" onclick="doCancel()" data-lv="Jā, atcelt" data-ru="Да, отменить"></button>
+    </div>
+  </div>
+
+  <!-- Success -->
+  <div class="card hide" id="s2">
+    <div class="ic ic-ok">✓</div>
+    <h2 data-lv="Pieraksts atcelts" data-ru="Запись отменена"></h2>
+    <p data-lv="Jūsu pieraksts ir veiksmīgi atcelts. Varat jebkurā laikā pieteikties no jauna." data-ru="Ваша запись успешно отменена. Вы можете записаться заново в любое время."></p>
+    <div class="brow">
+      <a href="https://idental-booking.vercel.app" class="btn btn-teal" data-lv="Pieteikties no jauna" data-ru="Записаться заново"></a>
+    </div>
+  </div>
+
+  <!-- Error -->
+  <div class="card hide" id="s3">
+    <div class="ic ic-warn">❌</div>
+    <h2 data-lv="Kļūda" data-ru="Ошибка"></h2>
+    <p data-lv="Neizdevās atcelt pierakstu. Lūdzu, sazinieties ar mums pa tālruni +371 27778858." data-ru="Не удалось отменить запись. Пожалуйста, свяжитесь с нами по телефону +371 27778858."></p>
+  </div>
+
+  <div class="foot">
+    <span data-lv="Pierakstu nodrošina" data-ru="Запись обеспечена"></span> <a href="#">iDental</a> · Tērbatas iela 78, Rīga
+  </div>
+</div>
+
+<script>
+const WEBHOOK = 'https://demmssss.app.n8n.cloud/webhook-test/cancel-booking';
+const token = new URLSearchParams(location.search).get('token') || '';
+let L = 'lv';
+
+function setL(l) {
+  L = l;
+  document.querySelectorAll('.lang button').forEach(b => b.classList.toggle('on', b.textContent === (l === 'lv' ? 'LAT' : 'РУС')));
+  document.querySelectorAll('[data-lv]').forEach(e => e.textContent = e.getAttribute('data-' + l));
+}
+
+function goBack() {
+  window.location.href = 'https://idental-booking.vercel.app';
+}
+
+async function doCancel() {
+  const btn = document.getElementById('btn-cancel');
+  btn.innerHTML = '<span class="spin"></span>' + (L === 'lv' ? 'Atceļ...' : 'Отмена...');
+  btn.disabled = true;
+
+  try {
+    await fetch(WEBHOOK, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token: token }),
+      mode: 'no-cors'
+    });
+    document.getElementById('s1').classList.add('hide');
+    document.getElementById('s2').classList.remove('hide');
+  } catch (e) {
+    document.getElementById('s1').classList.add('hide');
+    document.getElementById('s3').classList.remove('hide');
+  }
+}
+
+setL('lv');
+if (!token) {
+  document.getElementById('s1').classList.add('hide');
+  document.getElementById('s3').classList.remove('hide');
+}
+</script>
+</body>
+</html>
