@@ -3,447 +3,412 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI GrowthOps — Dr. Katkevičas Diennakts Zobārstniecība</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>AI GrowthOps — Diennakts Zobārstniecība</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--teal:#1A6B5A;--teal2:#E6F2EF;--gold:#BFA26A;--gold2:#FDF8F0;--bg:#0C0F12;--card:#161A1F;--card2:#1C2127;--text:#F0F0F0;--muted:#8A8F99;--border:#2A2E35;--red:#E5484D;--green:#30A46C;--blue:#3B82F6;--radius:16px}
+:root{--primary:#0F4F3E;--primary-l:#1A6B5A;--gold:#C8A06A;--gold-l:#E8D5B5;--bg:#090B0E;--card:#12151A;--card2:#181C22;--text:#EAEAEA;--muted:#7D8490;--border:#222730;--red:#D94545;--green:#2EA66B;--blue:#4B8BF5;--r:14px}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-body::before{content:'';position:fixed;top:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(26,107,90,.12),transparent 70%);pointer-events:none}
-body::after{content:'';position:fixed;bottom:-150px;left:-150px;width:500px;height:500px;background:radial-gradient(circle,rgba(191,162,106,.08),transparent 70%);pointer-events:none}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:'';position:fixed;top:-300px;right:-200px;width:800px;height:800px;background:radial-gradient(circle,rgba(15,79,62,.15),transparent 65%);pointer-events:none}
+body::after{content:'';position:fixed;bottom:-200px;left:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(200,160,106,.06),transparent 65%);pointer-events:none}
 
-.lang{position:fixed;top:16px;right:16px;display:flex;gap:2px;background:var(--card);border-radius:28px;padding:3px;box-shadow:0 2px 16px rgba(0,0,0,.3);z-index:50;border:1px solid var(--border)}
-.lang button{padding:7px 14px;border:none;background:0;font-family:inherit;font-size:11px;font-weight:600;color:var(--muted);border-radius:24px;cursor:pointer;transition:.2s;letter-spacing:.8px}
-.lang button.on{background:var(--teal);color:#fff}
+.L{position:fixed;top:14px;right:14px;display:flex;gap:2px;background:var(--card);border-radius:24px;padding:3px;box-shadow:0 4px 20px rgba(0,0,0,.4);z-index:50;border:1px solid var(--border)}
+.L button{padding:6px 14px;border:none;background:0;font-family:inherit;font-size:11px;font-weight:600;color:var(--muted);border-radius:20px;cursor:pointer;transition:.2s;letter-spacing:.7px}
+.L button.on{background:var(--primary);color:#fff}
 
-.wrap{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:40px 20px 80px}
+.W{max-width:700px;margin:0 auto;padding:36px 18px 80px;position:relative;z-index:1}
+@keyframes fu{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.an{opacity:0}.an.v{animation:fu .5s ease forwards}
 
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+/* Hero */
+.hero{text-align:center;margin-bottom:48px;animation:fu .6s ease}
+.hero-sub{display:inline-block;padding:5px 14px;background:linear-gradient(135deg,var(--primary),rgba(200,160,106,.2));border:1px solid rgba(200,160,106,.2);border-radius:20px;font-size:10.5px;font-weight:700;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px}
+.hero-for{font-size:13px;color:var(--primary-l);font-weight:600;margin-bottom:10px}
+.hero h1{font-family:'DM Serif Display',serif;font-size:clamp(26px,5.5vw,42px);line-height:1.12;margin-bottom:14px;letter-spacing:-.3px}
+.hero h1 .hl{color:var(--gold)}
+.hero h1 .hlr{color:var(--red)}
+.hero p{color:var(--muted);font-size:15.5px;line-height:1.6;max-width:520px;margin:0 auto}
 
-.hero{text-align:center;margin-bottom:52px;animation:fadeUp .6s ease}
-.hero-badge{display:inline-block;padding:6px 16px;background:var(--card);border:1px solid var(--border);border-radius:20px;font-size:11px;font-weight:600;color:var(--gold);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:16px}
-.hero-clinic{font-size:14px;color:var(--teal);font-weight:600;margin-bottom:8px;letter-spacing:.3px}
-.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,5.5vw,40px);font-weight:700;line-height:1.12;margin-bottom:14px}
-.hero h1 span{color:var(--red)}
-.hero h1 em{color:var(--gold);font-style:normal}
-.hero p{color:var(--muted);font-size:16px;line-height:1.6;max-width:540px;margin:0 auto}
+/* Clinic card */
+.cc{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:24px;margin-bottom:36px;display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+.cc-logo{width:56px;height:56px;background:linear-gradient(135deg,var(--primary),var(--gold));border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px}
+.cc-info{flex:1;min-width:180px}
+.cc-info h3{font-size:15px;font-weight:700}.cc-info .sub{font-size:12px;color:var(--muted);margin-top:2px}
+.cc-stats{display:flex;gap:16px;flex-wrap:wrap;margin-left:auto}
+.cs{text-align:center;min-width:50px}.cs .n{font-size:18px;font-weight:700;color:var(--primary-l)}.cs .l{font-size:10px;color:var(--muted)}
 
-.section{margin-bottom:48px}
-.section-tag{font-size:11px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
-.section h2{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;margin-bottom:18px;line-height:1.2}
-.section-desc{color:var(--muted);font-size:14.5px;line-height:1.6;margin-bottom:20px}
-.divider{height:1px;background:var(--border);margin:48px 0}
+/* Big number */
+.big{background:linear-gradient(135deg,rgba(15,79,62,.12),rgba(200,160,106,.08));border:1px solid rgba(200,160,106,.15);border-radius:var(--r);padding:28px;text-align:center;margin:28px 0}
+.big .bn{font-family:'DM Serif Display',serif;font-size:44px;color:var(--gold);line-height:1}
+.big .bl{font-size:14px;color:var(--text);margin-top:6px}
+.big .bs{font-size:12.5px;color:var(--muted);margin-top:8px}
 
-/* Clinic profile */
-.clinic-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:28px;margin-bottom:32px;display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap}
-.clinic-logo{width:64px;height:64px;background:linear-gradient(135deg,var(--teal),var(--gold));border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0}
-.clinic-info{flex:1;min-width:200px}
-.clinic-info h3{font-size:17px;font-weight:700;margin-bottom:4px}
-.clinic-info .ci-sub{font-size:13px;color:var(--muted);margin-bottom:10px}
-.clinic-stats{display:flex;gap:20px;flex-wrap:wrap}
-.clinic-stats .cs{text-align:center}
-.clinic-stats .cs .csn{font-size:20px;font-weight:700;color:var(--teal)}
-.clinic-stats .cs .csl{font-size:11px;color:var(--muted)}
+/* Section */
+.S{margin-bottom:44px}
+.tag{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.S h2{font-family:'DM Serif Display',serif;font-size:24px;margin-bottom:14px;line-height:1.2}
+.S .desc{color:var(--muted);font-size:14px;line-height:1.55;margin-bottom:18px}
+.div{height:1px;background:var(--border);margin:44px 0}
 
-/* Big stats */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:32px}
-.stat{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px 12px;text-align:center}
-.stat .num{font-size:26px;font-weight:700;margin-bottom:4px}
-.stat .num.teal{color:var(--teal)}.stat .num.gold{color:var(--gold)}.stat .num.red{color:var(--red)}.stat .num.green{color:var(--green)}
-.stat .lbl{font-size:11px;color:var(--muted);line-height:1.3}
-
-/* Highlight box */
-.highlight{background:linear-gradient(135deg,rgba(26,107,90,.1),rgba(191,162,106,.08));border:1px solid rgba(26,107,90,.2);border-radius:var(--radius);padding:28px;text-align:center;margin:24px 0}
-.highlight .hl-num{font-size:42px;font-weight:700;color:var(--gold);font-family:'Cormorant Garamond',serif}
-.highlight .hl-lbl{font-size:15px;color:var(--text);margin-top:4px}
-.highlight .hl-sub{font-size:13px;color:var(--muted);margin-top:8px}
-
-/* Problems */
-.problems{display:grid;gap:12px}
-.prob{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px 20px;display:flex;gap:14px;align-items:flex-start}
-.prob .ic{font-size:22px;flex-shrink:0;margin-top:2px}
-.prob .t{font-weight:600;font-size:14.5px;margin-bottom:3px}
-.prob .d{font-size:13px;color:var(--muted);line-height:1.45}
-.prob .money{color:var(--red);font-weight:600;font-size:13px;margin-top:4px}
+/* Block cards - the 6 service blocks */
+.blocks{display:grid;gap:14px}
+.blk{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:22px;position:relative;overflow:hidden;transition:.2s}
+.blk::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:var(--r) var(--r) 0 0}
+.blk.b1::before{background:var(--red)}.blk.b2::before{background:var(--gold)}.blk.b3::before{background:var(--primary-l)}.blk.b4::before{background:var(--blue)}.blk.b5::before{background:var(--green)}.blk.b6::before{background:#A855F7}
+.blk-head{display:flex;gap:12px;align-items:center;margin-bottom:10px}
+.blk-ic{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.b1 .blk-ic{background:rgba(217,69,69,.1)}.b2 .blk-ic{background:rgba(200,160,106,.1)}.b3 .blk-ic{background:rgba(26,107,90,.1)}.b4 .blk-ic{background:rgba(75,139,245,.1)}.b5 .blk-ic{background:rgba(46,166,107,.1)}.b6 .blk-ic{background:rgba(168,85,247,.1)}
+.blk-t{font-weight:700;font-size:15px}
+.blk-items{padding-left:52px}
+.blk-item{font-size:13px;color:var(--muted);line-height:1.5;padding:3px 0;display:flex;gap:8px}
+.blk-item .dot{color:var(--primary-l);font-weight:700}
+.blk-money{font-size:12px;font-weight:600;color:var(--gold);margin-top:8px;padding-left:52px}
 
 /* Compare */
-.compare{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0}
-.compare-col{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px 20px;position:relative;overflow:hidden}
-.compare-col.bad::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--red)}
-.compare-col.good::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--green)}
-.compare-col h4{font-size:14px;font-weight:700;margin-bottom:14px}
-.compare-col.bad h4{color:var(--red)}.compare-col.good h4{color:var(--green)}
-.compare-item{font-size:12.5px;color:var(--muted);line-height:1.5;padding:5px 0;display:flex;gap:8px}
-.compare-item .ci{flex-shrink:0}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}
+.cmp-col{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:22px 18px;position:relative;overflow:hidden}
+.cmp-col.bad::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--red)}
+.cmp-col.good::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--green)}
+.cmp-col h4{font-size:13px;font-weight:700;margin-bottom:12px}.cmp-col.bad h4{color:var(--red)}.cmp-col.good h4{color:var(--green)}
+.cmp-i{font-size:12px;color:var(--muted);line-height:1.45;padding:4px 0}
 
 /* Flow */
-.flow{position:relative;padding-left:36px;margin:24px 0}
-.flow::before{content:'';position:absolute;left:12px;top:8px;bottom:8px;width:2.5px;background:linear-gradient(to bottom,var(--teal),var(--gold),var(--red),var(--green),var(--gold),var(--teal));border-radius:2px}
-.flow-step{position:relative;margin-bottom:22px}
-.flow-step::before{content:'';position:absolute;left:-28px;top:6px;width:13px;height:13px;border-radius:50%;border:2.5px solid var(--teal);background:var(--bg)}
-.flow-step.gold::before{border-color:var(--gold)}.flow-step.red::before{border-color:var(--red)}.flow-step.green::before{border-color:var(--green)}
-.flow-step .ft{font-weight:600;font-size:14.5px;margin-bottom:4px}
-.flow-step .fd{font-size:13px;color:var(--muted);line-height:1.5}
-.badge{display:inline-block;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:.5px;margin-left:6px;vertical-align:middle}
-.badge-auto{background:rgba(26,107,90,.15);color:var(--teal)}
-.badge-time{background:rgba(191,162,106,.15);color:var(--gold)}
-.badge-red{background:rgba(229,72,77,.12);color:var(--red)}
+.flow{position:relative;padding-left:34px;margin:20px 0}
+.flow::before{content:'';position:absolute;left:11px;top:8px;bottom:8px;width:2px;background:linear-gradient(to bottom,var(--primary-l),var(--gold),var(--red),var(--green),var(--gold));border-radius:2px}
+.fs{position:relative;margin-bottom:20px}
+.fs::before{content:'';position:absolute;left:-27px;top:5px;width:12px;height:12px;border-radius:50%;border:2.5px solid var(--primary-l);background:var(--bg)}
+.fs.gold::before{border-color:var(--gold)}.fs.red::before{border-color:var(--red)}.fs.green::before{border-color:var(--green)}
+.fs .ft{font-weight:600;font-size:13.5px;margin-bottom:3px}
+.fs .fd{font-size:12.5px;color:var(--muted);line-height:1.45}
+.badge{display:inline-block;padding:2px 7px;border-radius:5px;font-size:9.5px;font-weight:700;letter-spacing:.4px;margin-left:5px;vertical-align:middle}
+.ba{background:rgba(26,107,90,.15);color:var(--primary-l)}.bt{background:rgba(200,160,106,.15);color:var(--gold)}.br{background:rgba(217,69,69,.12);color:var(--red)}
 
-/* Systems grid */
-.systems{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0}
-.sys{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px 18px}
-.sys .si{font-size:28px;margin-bottom:10px}
-.sys .st{font-weight:600;font-size:14px;margin-bottom:5px}
-.sys .sd{font-size:12.5px;color:var(--muted);line-height:1.45}
-.sys .stag{display:inline-block;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700;margin-top:8px}
-.stag-ready{background:rgba(48,164,108,.12);color:var(--green)}
-.stag-soon{background:rgba(191,162,106,.12);color:var(--gold)}
+/* Email mock */
+.em{background:#fff;border-radius:12px;overflow:hidden;max-width:380px;margin:18px auto;box-shadow:0 4px 24px rgba(0,0,0,.3)}
+.em-top{background:#f5f5f5;padding:10px 14px;border-bottom:1px solid #e5e5e5}
+.em-dots{display:flex;gap:5px;margin-bottom:6px}
+.em-dot{width:9px;height:9px;border-radius:50%}.em-dot.r{background:#ff5f57}.em-dot.y{background:#febc2e}.em-dot.g{background:#28c840}
+.em-from{font-size:10.5px;color:#666}.em-from b{color:#333}
+.em-subj{font-size:12.5px;font-weight:600;color:#333;margin-top:3px}
+.em-brand{background:#0F4F3E;padding:16px;text-align:center}
+.em-brand h3{color:white;font-size:18px;font-family:'DM Serif Display',serif}
+.em-cnt{padding:18px 14px}
+.em-cnt p{font-size:12px;color:#444;line-height:1.5;margin-bottom:8px}
+.em-btn{display:block;width:fit-content;margin:14px auto;padding:9px 22px;background:var(--primary-l);color:white;border-radius:7px;text-decoration:none;font-size:12px;font-weight:600}
 
-/* Email mockup */
-.email-mock{background:#fff;border-radius:12px;overflow:hidden;max-width:400px;margin:20px auto;box-shadow:0 4px 24px rgba(0,0,0,.3)}
-.email-top{background:#f5f5f5;padding:12px 16px;border-bottom:1px solid #e5e5e5}
-.email-top .dots{display:flex;gap:6px;margin-bottom:8px}
-.email-top .dot{width:10px;height:10px;border-radius:50%}
-.email-top .dot.r{background:#ff5f57}.email-top .dot.y{background:#febc2e}.email-top .dot.g{background:#28c840}
-.email-from{font-size:11px;color:#666}.email-from b{color:#333}
-.email-subj{font-size:13px;font-weight:600;color:#333;margin-top:4px}
-.email-body{padding:0}
-.email-brand{background:#1a1a2e;padding:18px;text-align:center}
-.email-brand h3{color:white;font-size:20px;font-family:'Cormorant Garamond',serif}
-.email-content{padding:20px 16px}
-.email-content p{font-size:12.5px;color:#444;line-height:1.5;margin-bottom:10px}
-.email-btn{display:block;width:fit-content;margin:16px auto;padding:10px 24px;background:var(--teal);color:white;border-radius:8px;text-decoration:none;font-size:13px;font-weight:600;text-align:center}
+/* Dashboard mock */
+.dash{background:var(--card2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin:18px 0}
+.dash-top{background:var(--card);padding:14px 18px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.dash-top h4{font-size:14px}.dash-top .db{padding:3px 9px;border-radius:5px;font-size:10.5px;font-weight:600;background:rgba(46,166,107,.12);color:var(--green)}
+.dt{width:100%;border-collapse:collapse}
+.dt th{text-align:left;padding:9px 14px;font-size:10px;font-weight:600;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;border-bottom:1px solid var(--border)}
+.dt td{padding:10px 14px;font-size:12.5px;border-bottom:1px solid var(--border)}
+.dt tr:last-child td{border:none}
+.ds{display:inline-block;padding:2px 9px;border-radius:5px;font-size:10.5px;font-weight:600}
+.ds-b{background:rgba(75,139,245,.12);color:var(--blue)}.ds-v{background:rgba(46,166,107,.12);color:var(--green)}.ds-n{background:rgba(217,69,69,.12);color:var(--red)}.ds-c{background:rgba(200,160,106,.12);color:var(--gold)}
 
-/* Dashboard */
-.dash{background:var(--card2);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin:20px 0}
-.dash-top{background:var(--card);padding:16px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
-.dash-top h4{font-size:15px;font-weight:600}
-.dash-top .db{padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600}
-.db-green{background:rgba(48,164,108,.12);color:var(--green)}
-.dash-table{width:100%;border-collapse:collapse}
-.dash-table th{text-align:left;padding:10px 16px;font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;border-bottom:1px solid var(--border)}
-.dash-table td{padding:12px 16px;font-size:13px;border-bottom:1px solid var(--border)}
-.dash-table tr:last-child td{border:none}
-.ds{display:inline-block;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:600}
-.ds-booked{background:rgba(59,130,246,.12);color:var(--blue)}
-.ds-visited{background:rgba(48,164,108,.12);color:var(--green)}
-.ds-noshow{background:rgba(229,72,77,.12);color:var(--red)}
-.ds-cancel{background:rgba(191,162,106,.12);color:var(--gold)}
-.dbtn{padding:4px 12px;border:1.5px solid var(--border);border-radius:6px;background:transparent;color:var(--text);font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;margin:2px}
-.dbtn.dg{border-color:var(--green);color:var(--green)}
-.dbtn.dr{border-color:var(--red);color:var(--red)}
+/* Report mock */
+.rpt{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:22px;margin:18px 0}
+.rpt h4{font-size:13px;font-weight:600;margin-bottom:14px}
+.rpt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.rpt-i{background:var(--card2);border-radius:9px;padding:14px 10px;text-align:center}
+.rpt-i .rn{font-size:22px;font-weight:700;color:var(--primary-l)}
+.rpt-i .rl{font-size:10px;color:var(--muted);margin-top:2px}
 
 /* ROI */
-.roi{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:28px;margin:24px 0}
-.roi h3{font-family:'Cormorant Garamond',serif;font-size:22px;margin-bottom:20px}
-.roi-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);font-size:14px;align-items:center}
-.roi-row:last-child{border:none;padding-top:14px}
-.roi-row .rl{display:flex;align-items:center;gap:8px}
-.roi-row .ri{font-size:18px}
-.roi-row .rv{font-weight:700;font-size:15px;color:var(--teal)}
-.roi-total{background:linear-gradient(135deg,var(--teal),#1E7A65);border-radius:12px;padding:24px;text-align:center;margin-top:16px}
-.roi-total .rt-num{font-size:36px;font-weight:700;color:white}
-.roi-total .rt-lbl{font-size:14px;color:rgba(255,255,255,.7);margin-top:4px}
+.roi{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:24px;margin:22px 0}
+.roi h3{font-family:'DM Serif Display',serif;font-size:20px;margin-bottom:18px}
+.rr{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--border);font-size:13.5px;align-items:center}
+.rr:last-child{border:none;padding-top:12px}
+.rr .rv{font-weight:700;color:var(--primary-l)}
+.roi-total{background:linear-gradient(135deg,var(--primary),var(--primary-l));border-radius:12px;padding:22px;text-align:center;margin-top:14px}
+.roi-total .rtn{font-size:34px;font-weight:700;color:white;font-family:'DM Serif Display',serif}
+.roi-total .rtl{font-size:13px;color:rgba(255,255,255,.7);margin-top:4px}
 
-/* Growth partner */
-.gp{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:28px;margin:24px 0}
-.gp h3{font-family:'Cormorant Garamond',serif;font-size:20px;margin-bottom:16px}
-.gp-month{display:flex;gap:14px;margin-bottom:16px;align-items:flex-start}
-.gp-num{width:40px;height:40px;border-radius:50%;background:var(--card2);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;color:var(--gold)}
-.gp-content h4{font-size:14px;font-weight:600;margin-bottom:3px}
-.gp-content p{font-size:12.5px;color:var(--muted);line-height:1.45}
+/* Growth Partner */
+.gp{margin:18px 0}
+.gp-step{display:flex;gap:14px;margin-bottom:16px}
+.gp-num{width:36px;height:36px;border-radius:50%;background:var(--card);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;color:var(--gold)}
+.gp-c h4{font-size:13.5px;font-weight:600;margin-bottom:2px}
+.gp-c p{font-size:12.5px;color:var(--muted);line-height:1.4}
 
-/* Monthly report preview */
-.report{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin:20px 0}
-.report h4{font-size:14px;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:8px}
-.report-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.report-item{background:var(--card2);border-radius:10px;padding:14px 12px;text-align:center}
-.report-item .rn{font-size:22px;font-weight:700;color:var(--teal)}
-.report-item .rl{font-size:11px;color:var(--muted);margin-top:2px}
+/* AI teaser */
+.ai-box{background:linear-gradient(135deg,var(--card),var(--card2));border:1px solid rgba(200,160,106,.2);border-radius:var(--r);padding:24px;text-align:center;margin:22px 0}
+.ai-box .ai-ic{font-size:36px;margin-bottom:10px}
+.ai-box h3{font-family:'DM Serif Display',serif;font-size:18px;margin-bottom:8px}
+.ai-box p{font-size:13px;color:var(--muted);line-height:1.5;max-width:450px;margin:0 auto}
+.ai-badge{display:inline-block;padding:4px 12px;background:rgba(200,160,106,.12);border-radius:6px;font-size:10px;font-weight:700;color:var(--gold);letter-spacing:.5px;margin-top:12px}
 
 /* Timeline */
-.timeline{margin:20px 0}
-.tl-step{display:flex;gap:16px;margin-bottom:20px}
-.tl-num{width:36px;height:36px;border-radius:50%;background:var(--teal);color:white;font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.tl-content h4{font-size:14.5px;font-weight:600;margin-bottom:3px}
-.tl-content p{font-size:13px;color:var(--muted);line-height:1.45}
+.tl{margin:18px 0}
+.tl-s{display:flex;gap:14px;margin-bottom:18px}
+.tl-n{width:34px;height:34px;border-radius:50%;background:var(--primary);color:white;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.tl-c h4{font-size:14px;font-weight:600;margin-bottom:2px}
+.tl-c p{font-size:12.5px;color:var(--muted);line-height:1.4}
 
 /* CTA */
-.cta{background:linear-gradient(135deg,var(--teal),#1E7A65);border-radius:var(--radius);padding:36px 28px;text-align:center;margin:40px 0}
-.cta h2{font-family:'Cormorant Garamond',serif;font-size:28px;color:white;margin-bottom:10px}
-.cta p{color:rgba(255,255,255,.75);font-size:15px;margin-bottom:24px}
-.cta a{display:inline-block;padding:14px 36px;background:white;color:var(--teal);border-radius:10px;text-decoration:none;font-weight:700;font-size:15px;transition:.2s}
+.cta{background:linear-gradient(135deg,var(--primary),var(--primary-l));border-radius:var(--r);padding:32px 24px;text-align:center;margin:36px 0}
+.cta h2{font-family:'DM Serif Display',serif;font-size:26px;color:white;margin-bottom:10px}
+.cta p{color:rgba(255,255,255,.7);font-size:14px;margin-bottom:22px}
+.cta a{display:inline-block;padding:13px 32px;background:white;color:var(--primary);border-radius:10px;text-decoration:none;font-weight:700;font-size:14px;transition:.2s}
 .cta a:hover{transform:translateY(-2px);box-shadow:0 4px 20px rgba(0,0,0,.2)}
 
-.demo-link{display:block;text-align:center;padding:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;color:var(--teal);font-weight:600;text-decoration:none;font-size:14px;margin:16px 0;transition:.2s}
-.demo-link:hover{border-color:var(--teal)}
+.foot{text-align:center;font-size:11px;color:var(--muted);margin-top:36px}
+.foot a{color:var(--primary-l);text-decoration:none}
 
-.foot{text-align:center;font-size:12px;color:var(--muted);margin-top:40px}
-.foot a{color:var(--teal);text-decoration:none}
-
-@media(max-width:600px){
-  .stats{grid-template-columns:repeat(2,1fr)}
-  .compare,.systems{grid-template-columns:1fr}
-  .report-grid{grid-template-columns:repeat(2,1fr)}
-  .clinic-card{flex-direction:column}
-}
+@media(max-width:560px){.cmp{grid-template-columns:1fr}.rpt-grid{grid-template-columns:repeat(2,1fr)}.cc{flex-direction:column}.cc-stats{margin-left:0}}
 </style>
 </head>
 <body>
 
-<div class="lang">
-  <button class="on" onclick="setL('lv')">LAT</button>
-  <button onclick="setL('ru')">РУС</button>
-</div>
+<div class="L"><button class="on" onclick="setL('lv')">LAT</button><button onclick="setL('ru')">РУС</button></div>
 
-<div class="wrap">
+<div class="W">
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-badge">AI GrowthOps × Dental Growth</div>
-  <div class="hero-clinic" data-lv="Sagatavots Dr. Jūlijas Katkevičas diennakts zobārstniecībai" data-ru="Подготовлено для Дежурной стоматологии Др. Юлии Каткевичи"></div>
-  <h1 data-lv="13 gadi. Tūkstošiem pacientu. Cik no viņiem <span>nekad neatgriezās</span>? Mēs viņus <em>atgriezīsim</em>." data-ru="13 лет. Тысячи пациентов. Сколько из них <span>никогда не вернулись</span>? Мы их <em>вернём</em>."></h1>
-  <p data-lv="Automatizēta sistēma, kas darbojas 24/7 — tāpat kā Jūsu klīnika." data-ru="Автоматизированная система, которая работает 24/7 — так же, как ваша клиника."></p>
+<div class="hero-sub">AI GrowthOps</div>
+<div class="hero-for" data-lv="Sagatavots Dr. Jūlijas Katkevičas diennakts zobārstniecībai" data-ru="Подготовлено для Дежурной стоматологии Др. Юлии Каткевичи"></div>
+<h1 data-lv="13 gadi. 25,000+ pacientu. <span class='hlr'>Tūkstošiem no viņiem nekad neatgriezās.</span> Mēs to <span class='hl'>mainīsim</span>." data-ru="13 лет. 25,000+ пациентов. <span class='hlr'>Тысячи из них никогда не вернулись.</span> Мы это <span class='hl'>изменим</span>."></h1>
+<p data-lv="6 automatizētas sistēmas, kas strādā 24/7 — tāpat kā jūsu klīnika. Bez papildu darbaspēka." data-ru="6 автоматизированных систем, которые работают 24/7 — как ваша клиника. Без дополнительного персонала."></p>
 </div>
 
-<!-- CLINIC PROFILE -->
-<div class="clinic-card">
-  <div class="clinic-logo">🦷</div>
-  <div class="clinic-info">
-    <h3>Dr. Jūlijas Katkevičas diennakts zobārstniecība</h3>
-    <div class="ci-sub">Slokas iela 65b, Rīga · 24/7 · Kopš 2013</div>
-    <div class="clinic-stats">
-      <div class="cs"><div class="csn">13</div><div class="csl" data-lv="gadi darbā" data-ru="лет работы"></div></div>
-      <div class="cs"><div class="csn">1,729</div><div class="csl" data-lv="Google atsauksmes" data-ru="Google отзывов"></div></div>
-      <div class="cs"><div class="csn">4.4★</div><div class="csl" data-lv="reitings" data-ru="рейтинг"></div></div>
-      <div class="cs"><div class="csn">24/7</div><div class="csl" data-lv="darba režīms" data-ru="режим работы"></div></div>
-    </div>
-  </div>
+<!-- CLINIC CARD -->
+<div class="cc">
+<div class="cc-logo">🦷</div>
+<div class="cc-info"><h3>Dr. Jūlijas Katkevičas diennakts zobārstniecība</h3><div class="sub">Slokas iela 65b, Rīga · 24/7 · Kopš 2013</div></div>
+<div class="cc-stats">
+<div class="cs"><div class="n">13</div><div class="l" data-lv="gadi" data-ru="лет"></div></div>
+<div class="cs"><div class="n">1,729</div><div class="l">Google ★</div></div>
+<div class="cs"><div class="n">4.4</div><div class="l" data-lv="reitings" data-ru="рейтинг"></div></div>
+<div class="cs"><div class="n">24/7</div><div class="l" data-lv="režīms" data-ru="режим"></div></div>
+</div>
 </div>
 
-<!-- YOUR HIDDEN GOLDMINE -->
-<div class="highlight">
-  <div class="hl-num">~25,000+</div>
-  <div class="hl-lbl" data-lv="pacientu jūsu datu bāzē par 13 gadiem" data-ru="пациентов в вашей базе за 13 лет"></div>
-  <div class="hl-sub" data-lv="No tiem ~15,000-18,000 nav atgriezušies. Katrs no viņiem = €80-200 potenciālā vērtība." data-ru="Из них ~15,000-18,000 не вернулись. Каждый из них = €80-200 потенциальной ценности."></div>
+<!-- BIG NUMBER -->
+<div class="big">
+<div class="bn">~25,000+</div>
+<div class="bl" data-lv="pacientu jūsu bāzē par 13 gadiem" data-ru="пациентов в вашей базе за 13 лет"></div>
+<div class="bs" data-lv="No tiem ~15,000-18,000 nav atgriezušies. Katrs no viņiem varētu atkal kļūt par jūsu pacientu." data-ru="Из них ~15,000-18,000 не вернулись. Каждый из них мог бы снова стать вашим пациентом."></div>
 </div>
 
-<div class="divider"></div>
+<div class="div"></div>
 
-<!-- PROBLEMS SPECIFIC TO 24H CLINIC -->
-<div class="section">
-  <div class="section-tag" data-lv="JŪSU IZAICINĀJUMI" data-ru="ВАШИ ПРОБЛЕМЫ"></div>
-  <h2 data-lv="Kas notiek ar jūsu pacientiem šobrīd?" data-ru="Что происходит с вашими пациентами сейчас?"></h2>
-  <div class="problems">
-    <div class="prob"><div class="ic">👻</div><div><div class="t" data-lv="~15,000+ pazaudētu pacientu" data-ru="~15,000+ потерянных пациентов"></div><div class="d" data-lv="13 gadu laikā uzkrātie pacienti, kas vienkārši aizmirsa par jums. Neviens viņiem neatgādina." data-ru="За 13 лет накопившиеся пациенты, которые просто забыли о вас. Никто им не напомнил."></div><div class="money" data-lv="Potenciāli €1.2M+ neizmantota vērtība" data-ru="Потенциально €1.2M+ неиспользованной ценности"></div></div></div>
-    <div class="prob"><div class="ic">🚫</div><div><div class="t" data-lv="No-show un atcelšanas 24/7 režīmā" data-ru="No-show и отмены в режиме 24/7"></div><div class="d" data-lv="Ar diennakts režīmu tukši sloti ir vēl sāpīgāki — ārsti gaida, bet pacients neierodas." data-ru="При круглосуточном режиме пустые слоты ещё болезненнее — врачи ждут, а пациент не приходит."></div><div class="money" data-lv="~€2,000-4,000/mēn zaudējumi" data-ru="~€2,000-4,000/мес потери"></div></div></div>
-    <div class="prob"><div class="ic">⭐</div><div><div class="t" data-lv="1,729 atsauksmes — bet varētu būt 5,000+" data-ru="1,729 отзывов — но могло бы быть 5,000+"></div><div class="d" data-lv="Tikai 2-5% pacientu atstāj atsauksmi. Ar automātisku sistēmu šo skaitli var dubultot vai trīskāršot." data-ru="Только 2-5% пациентов оставляют отзыв. С автоматической системой это число можно удвоить или утроить."></div></div></div>
-    <div class="prob"><div class="ic">📋</div><div><div class="t" data-lv="Manuāls darbs pie telefona" data-ru="Ручная работа на телефоне"></div><div class="d" data-lv="Administrators zvana, raksta, atgādina — stundas katru dienu, kas varētu strādāt uz pacientiem." data-ru="Администратор звонит, пишет, напоминает — часы каждый день, которые могли бы идти на пациентов."></div></div></div>
-  </div>
+<!-- 6 BLOCKS -->
+<div class="S">
+<div class="tag" data-lv="6 SISTĒMAS JŪSU KLĪNIKAI" data-ru="6 СИСТЕМ ДЛЯ ВАШЕЙ КЛИНИКИ"></div>
+<h2 data-lv="Katrs bloks atrisina konkrētu problēmu" data-ru="Каждый блок решает конкретную проблему"></h2>
+
+<div class="blocks">
+
+<!-- Block 1 -->
+<div class="blk b1">
+<div class="blk-head"><div class="blk-ic">🔄</div><div class="blk-t" data-lv="1. Pacientu atgriešana" data-ru="1. Возврат пациентов"></div></div>
+<div class="blk-items">
+<div class="blk-item"><span class="dot">→</span><span data-lv="No-show: automātiski sazinās nākamajā dienā un piedāvā jaunu laiku" data-ru="No-show: автоматически связывается на следующий день и предлагает новое время"></span></div>
+<div class="blk-item"><span class="dot">→</span><span data-lv="Pazaudētie: 4-soļu e-pastu/SMS ķēde (1d → 4d → 7d → 30d)" data-ru="Потерянные: 4-шаговая цепочка email/SMS (1д → 4д → 7д → 30д)"></span></div>
+<div class="blk-item"><span class="dot">→</span><span data-lv="Vecās bāzes: importējam visus 25,000+ un reaktivējam pa 500" data-ru="Старые базы: импортируем все 25,000+ и реактивируем по 500"></span></div>
 </div>
 
-<div class="divider"></div>
+</div>
+
+<!-- Block 2 -->
+<div class="blk b2">
+<div class="blk-head"><div class="blk-ic">📅</div><div class="blk-t" data-lv="2. Tukšo logu aizpildīšana" data-ru="2. Заполнение пустых окон"></div></div>
+<div class="blk-items">
+<div class="blk-item"><span class="dot">→</span><span data-lv="Atcelšana → 30 sek. piedāvā slotu gaidīšanas sarakstam" data-ru="Отмена → за 30 сек. предлагает слот листу ожидания"></span></div>
+<div class="blk-item"><span class="dot">→</span><span data-lv="Automātiski aizpilda 60-70% atcelto slotu" data-ru="Автоматически заполняет 60-70% отменённых слотов"></span></div>
+<div class="blk-item"><span class="dot">→</span><span data-lv="Īpaši svarīgi 24/7 režīmā — neviens tukšs krēsls" data-ru="Особенно важно в режиме 24/7 — ни одного пустого кресла"></span></div>
+</div>
+
+</div>
+
+<!-- Block 3 -->
+<div class="blk b3">
+<div class="blk-head"><div class="blk-ic">🤖</div><div class="blk-t" data-lv="3. Administrācijas automatizācija" data-ru="3. Автоматизация администрирования"></div></div>
+<div class="blk-items">
+<div class="blk-item"><span class="dot">→</span><span data-lv="Pieraksta apstiprinājumi — automātiski ar visiem datiem" data-ru="Подтверждения записи — автоматически со всеми деталями"></span></div>
+<div class="blk-item"><span class="dot">→</span><span data-lv="Atgādinājumi -1 diena un -2 stundas pirms vizītes" data-ru="Напоминания за 1 день и 2 часа до визита"></span></div>
+<div class="blk-item"><span class="dot">→</span><span data-lv="Atcelšanas apstrāde — automātiski piedāvā pārrakstīties" data-ru="Обработка отмен — автоматически предлагает перезаписаться"></span></div>
+<div class="blk-item"><span class="dot">→</span><span data-lv="Vairs nav manuālu zvanu un atgādinājumu — sistēma visu dara pati" data-ru="Больше никаких ручных звонков и напоминаний — система всё делает сама"></span></div>
+<div class="blk-item"><span class="dot">→</span><span data-lv="Administrators var fokusēties uz pacientiem klīnikā, ne pie telefona" data-ru="Администратор может фокусироваться на пациентах в клинике, а не на телефоне"></span></div>
+</div>
+<div class="blk-money" data-lv="Rezultāts: administrācija strādā gudrāk, ne vairāk" data-ru="Результат: администрация работает умнее, а не больше"></div>
+</div>
+
+<!-- Block 4 -->
+<div class="blk b4">
+<div class="blk-head"><div class="blk-ic">📊</div><div class="blk-t" data-lv="4. Analītika un atskaites" data-ru="4. Аналитика и отчёты"></div></div>
+<div class="blk-items">
+<div class="blk-item"><span class="dot">→</span><span data-lv="Cik pacientu atnāca šomēnes / cik atgriezti" data-ru="Сколько пациентов пришло в этом месяце / сколько вернулось"></span></div>
+<div class="blk-item"><span class="dot">→</span><span data-lv="No-show procents un dinamika (bija 18% → kļuva 8%)" data-ru="Процент no-show и динамика (было 18% → стало 8%)"></span></div>
+<div class="blk-item"><span class="dot">→</span><span data-lv="Ārstu noslodze, populārākie pakalpojumi, atcelšanu iemesli" data-ru="Загрузка врачей, популярные услуги, причины отмен"></span></div>
+</div>
+<div class="blk-money" data-lv="Vērtība: pilna izpratne par klīnikas veselību" data-ru="Ценность: полное понимание здоровья клиники"></div>
+</div>
+
+<!-- Block 5 -->
+<div class="blk b5">
+<div class="blk-head"><div class="blk-ic">💎</div><div class="blk-t" data-lv="5. Atkārtotie apmeklējumi (LTV)" data-ru="5. Повторные визиты (LTV)"></div></div>
+<div class="blk-items">
+<div class="blk-item"><span class="dot">→</span><span data-lv="Pēc 6 mēnešiem automātiski aicina uz higiēnu/apskati" data-ru="Через 6 месяцев автоматически приглашает на гигиену/осмотр"></span></div>
+<div class="blk-item"><span class="dot">→</span><span data-lv="Pēc plombēšanas — kontroles apskate pēc 3 mēnešiem" data-ru="После пломбирования — контрольный осмотр через 3 месяца"></span></div>
+<div class="blk-item"><span class="dot">→</span><span data-lv="Pacients neatgriežas vienu reizi — viņš atgriežas mūžīgi" data-ru="Пациент возвращается не один раз — он возвращается вечно"></span></div>
+</div>
+<div class="blk-money" data-lv="Rezultāts: pacienti atgriežas regulāri" data-ru="Результат: пациенты возвращаются регулярно"></div>
+</div>
+
+<!-- Block 6 -->
+<div class="blk b6">
+<div class="blk-head"><div class="blk-ic">📣</div><div class="blk-t" data-lv="6. Mārketings un kampaņas" data-ru="6. Маркетинг и кампании"></div></div>
+<div class="blk-items">
+<div class="blk-item"><span class="dot">→</span><span data-lv="Google atsauksmju vākšana — no 1,729 uz 3,000+ (automātiski)" data-ru="Сбор Google отзывов — с 1,729 до 3,000+ (автоматически)"></span></div>
+<div class="blk-item"><span class="dot">→</span><span data-lv="Sezonas kampaņas — balināšana, higiēna, implanti" data-ru="Сезонные кампании — отбеливание, гигиена, импланты"></span></div>
+<div class="blk-item"><span class="dot">→</span><span data-lv="Dzimšanas dienas atlaides — automātiski" data-ru="Скидки на день рождения — автоматически"></span></div>
+<div class="blk-item"><span class="dot">→</span><span data-lv="Rekomendāciju programma — 'Iesaki draugam'" data-ru="Реферальная программа — 'Порекомендуй другу'"></span></div>
+</div>
+<div class="blk-money" data-lv="Rezultāts: jauni pacienti bez reklāmas budžeta" data-ru="Результат: новые пациенты без рекламного бюджета"></div>
+</div>
+
+</div>
+</div>
+
+<div class="div"></div>
 
 <!-- BEFORE / AFTER -->
-<div class="section">
-  <div class="section-tag" data-lv="PIRMS / PĒC" data-ru="ДО / ПОСЛЕ"></div>
-  <h2 data-lv="Kā mainīsies jūsu klīnika" data-ru="Как изменится ваша клиника"></h2>
-  <div class="compare">
-    <div class="compare-col bad">
-      <h4 data-lv="❌ Tagad" data-ru="❌ Сейчас"></h4>
-      <div class="compare-item"><span class="ci">•</span><span data-lv="25,000 pacientu bāzē — lielākā daļa neaktīvi" data-ru="25,000 пациентов в базе — большинство неактивны"></span></div>
-      <div class="compare-item"><span class="ci">•</span><span data-lv="Atcelšana = tukšs krēsls" data-ru="Отмена = пустое кресло"></span></div>
-      <div class="compare-item"><span class="ci">•</span><span data-lv="No-show — neviens nepārzvanina" data-ru="No-show — никто не перезванивает"></span></div>
-      <div class="compare-item"><span class="ci">•</span><span data-lv="Atsauksmes — jālūdz katru reizi" data-ru="Отзывы — нужно просить каждый раз"></span></div>
-      <div class="compare-item"><span class="ci">•</span><span data-lv="Nav automātisku atgādinājumu" data-ru="Нет автоматических напоминаний"></span></div>
-    </div>
-    <div class="compare-col good">
-      <h4 data-lv="✓ Ar mūsu sistēmu" data-ru="✓ С нашей системой"></h4>
-      <div class="compare-item"><span class="ci">•</span><span data-lv="Katrs pacients atgriežas automātiski ik 6 mēnešus" data-ru="Каждый пациент возвращается автоматически каждые 6 месяцев"></span></div>
-      <div class="compare-item"><span class="ci">•</span><span data-lv="Atcelšana → uzreiz piedāvā citu laiku" data-ru="Отмена → сразу предлагает другое время"></span></div>
-      <div class="compare-item"><span class="ci">•</span><span data-lv="No-show → automātiski sazinās nākamajā dienā" data-ru="No-show → автоматически связывается на следующий день"></span></div>
-      <div class="compare-item"><span class="ci">•</span><span data-lv="Atsauksmes automātiski pēc katras vizītes" data-ru="Отзывы автоматически после каждого визита"></span></div>
-      <div class="compare-item"><span class="ci">•</span><span data-lv="Atgādinājumi 1d + 2h pirms vizītes" data-ru="Напоминания за 1д + 2ч до визита"></span></div>
-    </div>
-  </div>
+<div class="S">
+<div class="tag" data-lv="PIRMS / PĒC" data-ru="ДО / ПОСЛЕ"></div>
+<h2 data-lv="Kā mainīsies jūsu klīnika" data-ru="Как изменится ваша клиника"></h2>
+<div class="cmp">
+<div class="cmp-col bad"><h4 data-lv="❌ Tagad" data-ru="❌ Сейчас"></h4>
+<div class="cmp-i" data-lv="• 15,000+ pacientu nav atgriezušies" data-ru="• 15,000+ пациентов не вернулись"></div>
+<div class="cmp-i" data-lv="• Atcelšana = tukšs krēsls" data-ru="• Отмена = пустое кресло"></div>
+<div class="cmp-i" data-lv="• No-show — neviens nepārzvanina" data-ru="• No-show — никто не перезванивает"></div>
+<div class="cmp-i" data-lv="• Administrators 3h/d pie telefona" data-ru="• Администратор 3ч/д на телефоне"></div>
+<div class="cmp-i" data-lv="• Nav skaidras analītikas par pacientu plūsmu" data-ru="• Нет чёткой аналитики по потоку пациентов"></div>
+</div>
+<div class="cmp-col good"><h4 data-lv="✓ Ar mūsu sistēmu" data-ru="✓ С нашей системой"></h4>
+<div class="cmp-i" data-lv="• Katrs pacients atgriežas ik 6 mēn." data-ru="• Каждый пациент возвращается каждые 6 мес."></div>
+<div class="cmp-i" data-lv="• Atcelšana → uzreiz piedāvā citu laiku" data-ru="• Отмена → сразу предлагает другое время"></div>
+<div class="cmp-i" data-lv="• No-show → auto zvans nākamajā dienā" data-ru="• No-show → авто сообщение на следующий день"></div>
+<div class="cmp-i" data-lv="• Administrators fokusējas uz pacientiem" data-ru="• Администратор фокусируется на пациентах"></div>
+<div class="cmp-i" data-lv="• Ikmēneša atskaite ar visiem skaitļiem" data-ru="• Ежемесячный отчёт со всеми цифрами"></div>
+</div>
+</div>
 </div>
 
-<div class="divider"></div>
-
-<!-- ALL SYSTEMS -->
-<div class="section">
-  <div class="section-tag" data-lv="SISTĒMAS" data-ru="СИСТЕМЫ"></div>
-  <h2 data-lv="7 automatizētas sistēmas jūsu klīnikai" data-ru="7 автоматизированных систем для вашей клиники"></h2>
-  <div class="systems">
-    <div class="sys"><div class="si">🎯</div><div class="st" data-lv="Līdu uztveršana" data-ru="Захват лидов"></div><div class="sd" data-lv="Katrs apmeklētājs, kas ievada kontaktus — uzreiz sistēmā. Ja nepierakstās 10 min — automātiski seko." data-ru="Каждый посетитель, который ввёл контакты — сразу в системе. Не записался за 10 мин — автоматическая догонялка."></div><span class="stag stag-ready">GATAVS</span></div>
-    <div class="sys"><div class="si">🔄</div><div class="st" data-lv="Pacientu reaktivācija" data-ru="Реактивация пациентов"></div><div class="sd" data-lv="4-soļu e-pastu/SMS ķēde: 1 diena → 4 dienas → 1 nedēļa → 1 mēnesis. Apstājas kad pierakstās." data-ru="4-шаговая цепочка email/SMS: 1 день → 4 дня → 1 неделя → 1 месяц. Останавливается при записи."></div><span class="stag stag-ready">GATAVS</span></div>
-    <div class="sys"><div class="si">📅</div><div class="st" data-lv="Pieraksta apstiprinājumi" data-ru="Подтверждения записи"></div><div class="sd" data-lv="Automātisks apstiprinājums + atcelšanas saite. Atgādinājums 1d un 2h pirms vizītes." data-ru="Автоматическое подтверждение + ссылка отмены. Напоминание за 1д и 2ч."></div><span class="stag stag-ready">GATAVS</span></div>
-    <div class="sys"><div class="si">❌</div><div class="st" data-lv="Atcelšanu pārvaldība" data-ru="Управление отменами"></div><div class="sd" data-lv="Pacients atceļ → uzreiz piedāvā pārrakstīties + automātiska sekošana." data-ru="Пациент отменяет → сразу предлагает перезаписаться + автоматическая догонялка."></div><span class="stag stag-ready">GATAVS</span></div>
-    <div class="sys"><div class="si">🚫</div><div class="st" data-lv="No-show apstrāde" data-ru="Обработка no-show"></div><div class="sd" data-lv="Klīnika atzīmē panelī → sistēma automātiski sazinās ar pacientu." data-ru="Клиника отмечает в панели → система автоматически связывается с пациентом."></div><span class="stag stag-ready">GATAVS</span></div>
-    <div class="sys"><div class="si">⭐</div><div class="st" data-lv="Google atsauksmju vākšana" data-ru="Сбор Google отзывов"></div><div class="sd" data-lv="Automātiski 1 dienu pēc vizītes. Mērķis: no 1,729 uz 3,000+ atsauksmēm." data-ru="Автоматически через 1 день после визита. Цель: с 1,729 до 3,000+ отзывов."></div><span class="stag stag-ready">GATAVS</span></div>
-    <div class="sys"><div class="si">🔁</div><div class="st" data-lv="6 mēnešu reaktivācija" data-ru="6-месячная реактивация"></div><div class="sd" data-lv="Pēc vizītes automātiski aicina atgriezties pēc 6 mēnešiem. Bezgalīgs cikls." data-ru="После визита автоматически приглашает вернуться через 6 месяцев. Бесконечный цикл."></div><span class="stag stag-ready">GATAVS</span></div>
-    <div class="sys"><div class="si">📊</div><div class="st" data-lv="Klīnikas panelis + atskaites" data-ru="Панель клиники + отчёты"></div><div class="sd" data-lv="Atzīmēt vizītes, no-show. Ikmēneša atskaite ar rezultātiem un ieteikumiem." data-ru="Отмечать визиты, no-show. Ежемесячный отчёт с результатами и рекомендациями."></div><span class="stag stag-soon">DRĪZUMĀ</span></div>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-<!-- PATIENT JOURNEY -->
-<div class="section">
-  <div class="section-tag" data-lv="PACIENTA CEĻŠ" data-ru="ПУТЬ ПАЦИЕНТА"></div>
-  <h2 data-lv="Pilns cikls — no pirmā kontakta līdz atkārtotai vizītei" data-ru="Полный цикл — от первого контакта до повторного визита"></h2>
-  <div class="flow">
-    <div class="flow-step"><div class="ft" data-lv="🌐 Pacients ievada kontaktus" data-ru="🌐 Пациент вводит контакты"></div><div class="fd" data-lv="Mājas lapā, sociālajos tīklos vai no reklāmas — dati uzreiz sistēmā" data-ru="На сайте, в соцсетях или из рекламы — данные сразу в системе"></div></div>
-    <div class="flow-step gold"><div class="ft" data-lv="⏱ 10 min — nepierakstījās?" data-ru="⏱ 10 мин — не записался?"> <span class="badge badge-auto">AUTO</span></div><div class="fd" data-lv="4-soļu ķēde: 10min → +1d → +4d → +7d" data-ru="4-шаговая цепочка: 10мин → +1д → +4д → +7д"></div></div>
-    <div class="flow-step green"><div class="ft" data-lv="✅ Pierakstījās" data-ru="✅ Записался"> <span class="badge badge-auto">AUTO</span></div><div class="fd" data-lv="Apstiprinājums + atcelšanas saite. Ķēde apstājas." data-ru="Подтверждение + ссылка отмены. Цепочка останавливается."></div></div>
-    <div class="flow-step"><div class="ft" data-lv="📅 -1 diena / -2 stundas" data-ru="📅 -1 день / -2 часа"> <span class="badge badge-time">ATGĀDINĀJUMS</span></div><div class="fd" data-lv="Divi atgādinājumi — samazina no-show par 40-60%" data-ru="Два напоминания — снижает no-show на 40-60%"></div></div>
-    <div class="flow-step red"><div class="ft" data-lv="❌ Atcēla / 🚫 Neieradās" data-ru="❌ Отменил / 🚫 Не пришёл"> <span class="badge badge-red">SEKOŠANA</span></div><div class="fd" data-lv="Automātiski piedāvā pārrakstīties + 3-soļu sekošana" data-ru="Автоматически предлагает перезаписаться + 3-шаговая догонялка"></div></div>
-    <div class="flow-step green"><div class="ft" data-lv="✓ Apmeklēja" data-ru="✓ Посетил"> <span class="badge badge-time">+1 DIENA</span></div><div class="fd" data-lv="Lūdz Google atsauksmi — automātiski" data-ru="Просит Google отзыв — автоматически"></div></div>
-    <div class="flow-step gold"><div class="ft" data-lv="🔄 Pēc 6 mēnešiem" data-ru="🔄 Через 6 месяцев"> <span class="badge badge-time">6 MĒN</span></div><div class="fd" data-lv="Automātiski aicina atgriezties. Cikls atkārtojas mūžīgi." data-ru="Автоматически приглашает вернуться. Цикл повторяется вечно."></div></div>
-  </div>
-</div>
-
-<div class="divider"></div>
+<div class="div"></div>
 
 <!-- EMAIL PREVIEW -->
-<div class="section">
-  <div class="section-tag" data-lv="E-PASTA PIEMĒRS" data-ru="ПРИМЕР EMAIL"></div>
-  <h2 data-lv="Profesionāli ziņojumi ar jūsu zīmolu" data-ru="Профессиональные сообщения с вашим брендом"></h2>
-  <div class="email-mock">
-    <div class="email-top">
-      <div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
-      <div class="email-from"><b>Diennakts Zobārstniecība</b> &lt;info@diennaktszobarstnieciba.lv&gt;</div>
-      <div class="email-subj" data-lv="Jūsu pieraksts apstiprināts ✓" data-ru="Ваша запись подтверждена ✓"></div>
-    </div>
-    <div class="email-body">
-      <div class="email-brand" style="background:#1a1a2e"><h3 style="font-size:18px">Dr. Katkevičas<br>Diennakts Zobārstniecība</h3></div>
-      <div class="email-content">
-        <p style="font-size:15px;color:#1a1a1a;font-weight:600" data-lv="Pieraksts apstiprināts!" data-ru="Запись подтверждена!"></p>
-        <div style="background:#fafaf8;padding:14px;border-radius:8px;margin:12px 0">
-          <p style="margin:4px 0;font-size:13px">🦷 <strong>Zobu higiēna</strong></p>
-          <p style="margin:4px 0;font-size:13px">👨‍⚕️ Dr. Julija Katkevica</p>
-          <p style="margin:4px 0;font-size:13px">📅 2026-03-24 — 14:00</p>
-          <p style="margin:4px 0;font-size:13px">📍 Slokas iela 65b, Rīga</p>
-        </div>
-        <a href="#" class="email-btn" data-lv="Mainīt pierakstu" data-ru="Изменить запись"></a>
-        <a href="#" style="display:block;text-align:center;color:#DC2626;font-size:11px;margin-top:8px;text-decoration:none" data-lv="Atcelt pierakstu" data-ru="Отменить запись"></a>
-      </div>
-    </div>
-  </div>
+<div class="S">
+<div class="tag" data-lv="E-PASTA PIEMĒRS" data-ru="ПРИМЕР EMAIL"></div>
+<h2 data-lv="Profesionāli ziņojumi jūsu vārdā" data-ru="Профессиональные сообщения от вашего имени"></h2>
+<div class="em">
+<div class="em-top"><div class="em-dots"><div class="em-dot r"></div><div class="em-dot y"></div><div class="em-dot g"></div></div><div class="em-from"><b>Diennakts Zobārstniecība</b></div><div class="em-subj" data-lv="Jūsu pieraksts apstiprināts ✓" data-ru="Ваша запись подтверждена ✓"></div></div>
+<div class="em-brand"><h3>Dr. Katkevičas<br>Diennakts Zobārstniecība</h3></div>
+<div class="em-cnt">
+<p style="font-size:14px;color:#1a1a1a;font-weight:600" data-lv="Pieraksts apstiprināts!" data-ru="Запись подтверждена!"></p>
+<div style="background:#fafaf8;padding:12px;border-radius:7px;margin:10px 0">
+<p style="margin:3px 0">🦷 <strong>Zobu higiēna</strong></p>
+<p style="margin:3px 0">👨‍⚕️ Dr. Julija Katkevica</p>
+<p style="margin:3px 0">📅 2026-03-24 — 14:00</p>
+<p style="margin:3px 0">📍 Slokas iela 65b, Rīga</p>
+</div>
+<a href="#" class="em-btn" data-lv="Mainīt pierakstu" data-ru="Изменить запись"></a>
+<p style="text-align:center;margin-top:6px"><a href="#" style="color:#D94545;font-size:11px;text-decoration:none" data-lv="Atcelt pierakstu" data-ru="Отменить запись"></a></p>
+</div>
+</div>
 </div>
 
-<div class="divider"></div>
+<div class="div"></div>
 
 <!-- DASHBOARD -->
-<div class="section">
-  <div class="section-tag" data-lv="KLĪNIKAS PANELIS" data-ru="ПАНЕЛЬ КЛИНИКИ"></div>
-  <h2 data-lv="Pilna kontrole vienā vietā" data-ru="Полный контроль в одном месте"></h2>
-  <div class="dash">
-    <div class="dash-top"><h4 data-lv="Šodienas pieraksti" data-ru="Записи на сегодня"></h4><div class="db db-green">6 / 8</div></div>
-    <table class="dash-table">
-      <thead><tr><th data-lv="Pacients" data-ru="Пациент"></th><th data-lv="Laiks" data-ru="Время"></th><th data-lv="Statuss" data-ru="Статус"></th><th data-lv="Darbība" data-ru="Действие"></th></tr></thead>
-      <tbody>
-        <tr><td>Anna B.</td><td>09:00</td><td><span class="ds ds-visited" data-lv="Apmeklēja" data-ru="Посетил"></span></td><td>—</td></tr>
-        <tr><td>Jānis K.</td><td>10:30</td><td><span class="ds ds-visited" data-lv="Apmeklēja" data-ru="Посетил"></span></td><td>—</td></tr>
-        <tr><td>Līga O.</td><td>13:00</td><td><span class="ds ds-booked" data-lv="Gaida" data-ru="Ожидает"></span></td><td><button class="dbtn dg" data-lv="✓ Bija" data-ru="✓ Был"></button><button class="dbtn dr" data-lv="✗ Nebija" data-ru="✗ Не был"></button></td></tr>
-        <tr><td>Viktors M.</td><td>15:00</td><td><span class="ds ds-noshow" data-lv="Neieradās" data-ru="Не пришёл"></span></td><td><span style="font-size:11px;color:var(--muted)">Auto ✓</span></td></tr>
-        <tr><td>Kristīne Z.</td><td>16:30</td><td><span class="ds ds-cancel" data-lv="Atcelts" data-ru="Отменён"></span></td><td><span style="font-size:11px;color:var(--muted)">Auto ✓</span></td></tr>
-      </tbody>
-    </table>
-  </div>
+<div class="S">
+<div class="tag" data-lv="KLĪNIKAS PANELIS" data-ru="ПАНЕЛЬ КЛИНИКИ"></div>
+<h2 data-lv="Pilna kontrole no vienas vietas" data-ru="Полный контроль из одного места"></h2>
+<div class="dash">
+<div class="dash-top"><h4 data-lv="Šodienas pieraksti" data-ru="Записи на сегодня"></h4><div class="db">6 / 8</div></div>
+<table class="dt"><thead><tr><th data-lv="Pacients" data-ru="Пациент"></th><th data-lv="Laiks" data-ru="Время"></th><th data-lv="Statuss" data-ru="Статус"></th><th data-lv="Darbība" data-ru="Действие"></th></tr></thead>
+<tbody>
+<tr><td>Anna B.</td><td>09:00</td><td><span class="ds ds-v" data-lv="Bija" data-ru="Был"></span></td><td>—</td></tr>
+<tr><td>Jānis K.</td><td>10:30</td><td><span class="ds ds-v" data-lv="Bija" data-ru="Был"></span></td><td>—</td></tr>
+<tr><td>Līga O.</td><td>13:00</td><td><span class="ds ds-b" data-lv="Gaida" data-ru="Ожидает"></span></td><td style="font-size:11px"><span style="color:var(--green);cursor:pointer">✓</span> <span style="color:var(--red);cursor:pointer">✗</span></td></tr>
+<tr><td>Viktors M.</td><td>15:00</td><td><span class="ds ds-n">No-show</span></td><td style="font-size:10px;color:var(--muted)">Auto ✓</td></tr>
+<tr><td>Kristīne Z.</td><td>16:30</td><td><span class="ds ds-c" data-lv="Atcelts" data-ru="Отменён"></span></td><td style="font-size:10px;color:var(--muted)">Auto ✓</td></tr>
+</tbody></table>
+</div>
 </div>
 
-<div class="divider"></div>
+<div class="div"></div>
 
-<!-- ROI SPECIFIC -->
-<div class="section">
-  <div class="section-tag" data-lv="APRĒĶINS JŪSU KLĪNIKAI" data-ru="РАСЧЁТ ДЛЯ ВАШЕЙ КЛИНИКИ"></div>
-  <h2 data-lv="Ko tas nozīmē skaitļos" data-ru="Что это значит в цифрах"></h2>
-  <div class="roi">
-    <h3 data-lv="Mēneša ieguvums (konservatīvs)" data-ru="Выгода в месяц (консервативно)"></h3>
-    <div class="roi-row"><div class="rl"><span class="ri">🔄</span><span data-lv="Atgriezti pacienti (40 × €120)" data-ru="Возвращённые пациенты (40 × €120)"></span></div><span class="rv">+€4,800</span></div>
-    <div class="roi-row"><div class="rl"><span class="ri">🚫</span><span data-lv="Samazināts no-show (25 × €90)" data-ru="Снижение no-show (25 × €90)"></span></div><span class="rv">+€2,250</span></div>
-    <div class="roi-row"><div class="rl"><span class="ri">❌</span><span data-lv="Atgūtas atcelšanas (15 × €100)" data-ru="Восстановленные отмены (15 × €100)"></span></div><span class="rv">+€1,500</span></div>
-    <div class="roi-row"><div class="rl"><span class="ri">⭐</span><span data-lv="Jauni pacienti no Google (10 × €150)" data-ru="Новые пациенты из Google (10 × €150)"></span></div><span class="rv">+€1,500</span></div>
-    <div class="roi-row"><div class="rl"><span class="ri">⏱</span><span data-lv="Ietaupīts laiks administratoram" data-ru="Сэкономленное время администратора"></span></div><span class="rv" data-lv="+20h/mēn" data-ru="+20ч/мес"></span></div>
-  </div>
-  <div class="roi-total">
-    <div class="rt-num">€10,050+</div>
-    <div class="rt-lbl" data-lv="papildu ieņēmumi mēnesī" data-ru="дополнительной выручки в месяц"></div>
-  </div>
+<!-- MONTHLY REPORT -->
+<div class="S">
+<div class="tag" data-lv="ATSKAITE" data-ru="ОТЧЁТ"></div>
+<h2 data-lv="Ikmēneša atskaites piemērs" data-ru="Пример ежемесячного отчёта"></h2>
+<div class="rpt">
+<h4 data-lv="📊 Marts 2026" data-ru="📊 Март 2026"></h4>
+<div class="rpt-grid">
+<div class="rpt-i"><div class="rn">847</div><div class="rl" data-lv="ziņas nosūtītas" data-ru="сообщений отправлено"></div></div>
+<div class="rpt-i"><div class="rn">42</div><div class="rl" data-lv="pacienti atgriezti" data-ru="пациентов вернулось"></div></div>
+<div class="rpt-i"><div class="rn">93%</div><div class="rl" data-lv="piegādāšanas rādītājs" data-ru="показатель доставки"></div></div>
+<div class="rpt-i"><div class="rn">8.2%</div><div class="rl" data-lv="no-show (bija 18%)" data-ru="no-show (было 18%)"></div></div>
+<div class="rpt-i"><div class="rn">+34</div><div class="rl" data-lv="jaunas atsauksmes" data-ru="новых отзывов"></div></div>
+<div class="rpt-i"><div class="rn">4.5★</div><div class="rl" data-lv="reitings (bija 4.4)" data-ru="рейтинг (было 4.4)"></div></div>
+</div>
+</div>
 </div>
 
-<div class="divider"></div>
+<div class="div"></div>
+
+<div class="div"></div>
 
 <!-- GROWTH PARTNER -->
-<div class="section">
-  <div class="section-tag" data-lv="ILGTERMIŅA PARTNERĪBA" data-ru="ДОЛГОСРОЧНОЕ ПАРТНЁРСТВО"></div>
-  <h2 data-lv="Mēs neesam vienkārši pakalpojums — mēs esam jūsu izaugsmes partneris" data-ru="Мы не просто сервис — мы ваш партнёр по росту"></h2>
-  <div class="gp">
-    <h3 data-lv="Ko jūs saņemat katru mēnesi" data-ru="Что вы получаете каждый месяц"></h3>
-    <div class="gp-month"><div class="gp-num">1</div><div class="gp-content"><h4 data-lv="Pastāvīga reaktivācija" data-ru="Постоянная реактивация"></h4><p data-lv="Katru mēnesi jauna partija pacientu tiek atgriezta. Bāze nekad nebeidzas." data-ru="Каждый месяц новая партия пациентов возвращается. База никогда не заканчивается."></p></div></div>
-    <div class="gp-month"><div class="gp-num">2</div><div class="gp-content"><h4 data-lv="Līdu pārvaldība" data-ru="Лид-менеджмент"></h4><p data-lv="Katrs kontakts — tālrunis, e-pasts, WhatsApp — nevienu nepalaižam garām." data-ru="Каждый контакт — телефон, email, WhatsApp — никого не пропускаем."></p></div></div>
-    <div class="gp-month"><div class="gp-num">3</div><div class="gp-content"><h4 data-lv="Grafika aizpildīšana" data-ru="Заполнение расписания"></h4><p data-lv="Tukšie sloti automātiski tiek piedāvāti pacientiem no gaidīšanas saraksta." data-ru="Пустые слоты автоматически предлагаются пациентам из листа ожидания."></p></div></div>
-    <div class="gp-month"><div class="gp-num">4</div><div class="gp-content"><h4 data-lv="Atskaite + ieteikumi" data-ru="Отчёт + рекомендации"></h4><p data-lv="Detalizēta mēneša atskaite: cik atgriezti, cik pierakstījušies, Google atsauksmes, ieteikumi uzlabojumiem." data-ru="Детальный месячный отчёт: сколько вернули, записалось, Google отзывы, рекомендации по улучшению."></p></div></div>
-    <div class="gp-month"><div class="gp-num">5</div><div class="gp-content"><h4 data-lv="Jaunas idejas un uzlabojumi" data-ru="Новые идеи и улучшения"></h4><p data-lv="Katru mēnesi — jauni priekšlikumi: sezonas akcijas, dzimšanas dienas, rekomendāciju programma." data-ru="Каждый месяц — новые предложения: сезонные акции, дни рождения, реферальная программа."></p></div></div>
-  </div>
+<div class="S">
+<div class="tag" data-lv="PARTNERĪBA" data-ru="ПАРТНЁРСТВО"></div>
+<h2 data-lv="Mēs neesam vienkārši pakalpojums — mēs esam jūsu izaugsmes partneris" data-ru="Мы не просто сервис — мы ваш партнёр по росту"></h2>
+<p class="desc" data-lv="Katru mēnesi jūs saņemat:" data-ru="Каждый месяц вы получаете:"></p>
+<div class="gp">
+<div class="gp-step"><div class="gp-num">1</div><div class="gp-c"><h4 data-lv="Pastāvīga pacientu atgriešana" data-ru="Постоянный возврат пациентов"></h4><p data-lv="Jauna pacientu partija katru mēnesi. Bāze nav galīga — 6 mēn. cikls darbojas mūžīgi." data-ru="Новая партия пациентов каждый месяц. База не конечна — 6-мес. цикл работает вечно."></p></div></div>
+<div class="gp-step"><div class="gp-num">2</div><div class="gp-c"><h4 data-lv="Grafika optimizācija" data-ru="Оптимизация расписания"></h4><p data-lv="Tukšo logu aizpildīšana, atcelšanu apstrāde, gaidīšanas saraksts." data-ru="Заполнение пустых слотов, обработка отмен, лист ожидания."></p></div></div>
+<div class="gp-step"><div class="gp-num">3</div><div class="gp-c"><h4 data-lv="Detalizēta atskaite" data-ru="Детальный отчёт"></h4><p data-lv="Skaitļi, grafiki, tendences — jūs redzat precīzi kur nauda nāk un kur zūd." data-ru="Цифры, графики, тенденции — вы видите точно где деньги приходят и где теряются."></p></div></div>
+<div class="gp-step"><div class="gp-num">4</div><div class="gp-c"><h4 data-lv="Jaunas idejas un uzlabojumi" data-ru="Новые идеи и улучшения"></h4><p data-lv="Sezonas kampaņas, dzimšanas dienu atlaides, rekomendāciju programma — katru mēnesi kaut kas jauns." data-ru="Сезонные акции, скидки на день рождения, реферальная программа — каждый месяц что-то новое."></p></div></div>
+</div>
 </div>
 
-<!-- MONTHLY REPORT PREVIEW -->
-<div class="report">
-  <h4>📊 <span data-lv="Mēneša atskaites piemērs" data-ru="Пример месячного отчёта"></span></h4>
-  <div class="report-grid">
-    <div class="report-item"><div class="rn">847</div><div class="rl" data-lv="e-pasti nosūtīti" data-ru="email отправлено"></div></div>
-    <div class="report-item"><div class="rn">42</div><div class="rl" data-lv="pacienti atgriezti" data-ru="пациентов вернулось"></div></div>
-    <div class="report-item"><div class="rn">€5,040</div><div class="rl" data-lv="papildu ieņēmumi" data-ru="доп. выручка"></div></div>
-    <div class="report-item"><div class="rn">8.2%</div><div class="rl" data-lv="no-show (bija 18%)" data-ru="no-show (было 18%)"></div></div>
-    <div class="report-item"><div class="rn">+34</div><div class="rl" data-lv="jaunas Google atsauksmes" data-ru="новых Google отзывов"></div></div>
-    <div class="report-item"><div class="rn">4.5★</div><div class="rl" data-lv="reitings (bija 4.4)" data-ru="рейтинг (было 4.4)"></div></div>
-  </div>
+<div class="div"></div>
+
+<!-- AI VOICE TEASER -->
+<div class="S">
+<div class="tag" data-lv="NĀKOTNE" data-ru="БУДУЩЕЕ"></div>
+<h2 data-lv="Un tas ir tikai sākums" data-ru="И это только начало"></h2>
+<div class="ai-box">
+<div class="ai-ic">🎙️</div>
+<h3 data-lv="AI balss asistents — drīzumā" data-ru="AI голосовой ассистент — скоро"></h3>
+<p data-lv="Iedomājieties: pacients zvana plkst. 3:00 naktī. AI asistents atbild latviski vai krieviski, pieraksta vizītei, atbild uz jautājumiem par cenām un pakalpojumiem. Strādā 24/7 — tāpat kā jūsu klīnika." data-ru="Представьте: пациент звонит в 3:00 ночи. AI ассистент отвечает на латышском или русском, записывает на визит, отвечает на вопросы о ценах и услугах. Работает 24/7 — как ваша клиника."></p>
+<div class="ai-badge" data-lv="PIEEJAMS 2. FĀZĒ" data-ru="ДОСТУПНО ВО 2-Й ФАЗЕ"></div>
+</div>
 </div>
 
-<div class="divider"></div>
+<div class="div"></div>
 
-<!-- HOW TO START -->
-<div class="section">
-  <div class="section-tag" data-lv="KĀ SĀKT" data-ru="КАК НАЧАТЬ"></div>
-  <h2 data-lv="3 vienkārši soļi" data-ru="3 простых шага"></h2>
-  <div class="timeline">
-    <div class="tl-step"><div class="tl-num">1</div><div class="tl-content"><h4 data-lv="Demonstrācija (šodien)" data-ru="Демонстрация (сегодня)"></h4><p data-lv="Parādām kā sistēma strādās tieši jūsu klīnikā ar jūsu datiem" data-ru="Покажем как система будет работать именно для вашей клиники с вашими данными"></p></div></div>
-    <div class="tl-step"><div class="tl-num">2</div><div class="tl-content"><h4 data-lv="Iestatīšana (3-5 dienas)" data-ru="Настройка (3-5 дней)"></h4><p data-lv="Pielāgojam sistēmu — jūsu zīmols, kontakti, pakalpojumi, ārsti" data-ru="Адаптируем систему — ваш бренд, контакты, услуги, врачи"></p></div></div>
-    <div class="tl-step"><div class="tl-num">3</div><div class="tl-content"><h4 data-lv="Palaišana + pastāvīgs atbalsts" data-ru="Запуск + постоянная поддержка"></h4><p data-lv="Sistēma sāk strādāt 24/7. Ikmēneša atskaite + jaunas idejas." data-ru="Система начинает работать 24/7. Ежемесячный отчёт + новые идеи."></p></div></div>
-  </div>
-</div>
 
-<!-- LIVE DEMO -->
-<a href="https://idental-booking.vercel.app" target="_blank" class="demo-link" data-lv="🔗 Apskatīt pieraksta sistēmu (dzīvā demo)" data-ru="🔗 Посмотреть систему записи (живое демо)"></a>
-
-<!-- CTA -->
+<!-- CLOSING -->
 <div class="cta">
-  <h2 data-lv="25,000+ pacientu gaida jūsu ziņu" data-ru="25,000+ пациентов ждут вашего сообщения"></h2>
-  <p data-lv="Sāksim ar pirmo 500 pacientiem un parādīsim rezultātu pirmajā mēnesī." data-ru="Начнём с первых 500 пациентов и покажем результат в первый месяц."></p>
-  <a href="https://wa.me/37120000000" data-lv="Sākt sadarbību →" data-ru="Начать сотрудничество →"></a>
+<h2 data-lv="Aprunāsimies pirmdien" data-ru="Поговорим в понедельник"></h2>
+<p data-lv="Parādīšu kā tas izskatītos tieši jūsu klīnikā." data-ru="Покажу как это будет выглядеть именно для вашей клиники."></p>
 </div>
 
-<div class="foot">
-  AI GrowthOps · Rīga, Latvia · <a href="mailto:team@ai-growthops.com">team@ai-growthops.com</a>
-</div>
+<div class="foot">AI GrowthOps · Rīga, Latvia · <a href="mailto:team@ai-growthops.com">team@ai-growthops.com</a></div>
 
 </div>
 
 <script>
 let L='lv';
-function setL(l){
-  L=l;
-  document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('on',b.textContent===(l==='lv'?'LAT':'РУС')));
-  document.querySelectorAll('[data-lv]').forEach(e=>{
-    const v=e.getAttribute('data-'+l);
-    if(e.tagName==='INPUT')e.placeholder=v;
-    else if(e.tagName==='A'&&e.getAttribute('href')&&!e.classList.contains('demo-link'))e.textContent=v;
-    else e.innerHTML=v;
-  });
-}
+function setL(l){L=l;document.querySelectorAll('.L button').forEach(b=>b.classList.toggle('on',b.textContent===(l==='lv'?'LAT':'РУС')));document.querySelectorAll('[data-lv]').forEach(e=>{const v=e.getAttribute('data-'+l);if(e.tagName==='A'&&e.getAttribute('href'))e.textContent=v;else e.innerHTML=v})}
 setL('lv');
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('v');obs.unobserve(x.target)}})},{threshold:.1});
+document.querySelectorAll('.an').forEach(el=>obs.observe(el));
 </script>
 </body>
 </html>
+
