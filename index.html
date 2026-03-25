@@ -1,371 +1,413 @@
 <!DOCTYPE html>
 <html lang="lv">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>iDental — Pieraksts / Запись</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --teal: #1A6B5A;
-      --teal-light: #E6F2EF;
-      --teal-dark: #135245;
-      --gold: #BFA26A;
-      --gold-light: #FDF8F0;
-      --bg: #F7F6F3;
-      --card: #FFFFFF;
-      --text: #1C1C1C;
-      --muted: #7A7F88;
-      --border: #E2E4E8;
-      --focus: #1A6B5A;
-      --ok: #0E8A62;
-      --ok-bg: #EEFBF5;
-      --radius: 14px;
-      --radius-sm: 10px;
-    }
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Outfit', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
-    }
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 600px 600px at 80% -10%, rgba(26,107,90,0.07), transparent),
-        radial-gradient(ellipse 500px 500px at -10% 90%, rgba(191,162,106,0.06), transparent);
-      pointer-events: none;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI GrowthOps — Diennakts Zobārstniecība</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--primary:#0F4F3E;--primary-l:#1A6B5A;--gold:#C8A06A;--gold-l:#E8D5B5;--bg:#090B0E;--card:#12151A;--card2:#181C22;--text:#EAEAEA;--muted:#7D8490;--border:#222730;--red:#D94545;--green:#2EA66B;--blue:#4B8BF5;--r:14px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:'';position:fixed;top:-300px;right:-200px;width:800px;height:800px;background:radial-gradient(circle,rgba(15,79,62,.15),transparent 65%);pointer-events:none}
+body::after{content:'';position:fixed;bottom:-200px;left:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(200,160,106,.06),transparent 65%);pointer-events:none}
 
-    /* ---- lang toggle ---- */
-    .lang { position: fixed; top: 16px; right: 16px; display: flex; gap: 2px; background: var(--card); border-radius: 28px; padding: 3px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); z-index: 50; }
-    .lang button { padding: 7px 15px; border: none; background: 0; font-family: inherit; font-size: 12px; font-weight: 600; color: var(--muted); border-radius: 24px; cursor: pointer; transition: .2s; letter-spacing: .6px; }
-    .lang button.on { background: var(--teal); color: #fff; }
+.L{position:fixed;top:14px;right:14px;display:flex;gap:2px;background:var(--card);border-radius:24px;padding:3px;box-shadow:0 4px 20px rgba(0,0,0,.4);z-index:50;border:1px solid var(--border)}
+.L button{padding:6px 14px;border:none;background:0;font-family:inherit;font-size:11px;font-weight:600;color:var(--muted);border-radius:20px;cursor:pointer;transition:.2s;letter-spacing:.7px}
+.L button.on{background:var(--primary);color:#fff}
 
-    /* ---- layout ---- */
-    .wrap { position: relative; z-index: 1; max-width: 500px; margin: 0 auto; padding: 36px 18px 56px; }
+.W{max-width:700px;margin:0 auto;padding:36px 18px 80px;position:relative;z-index:1}
+@keyframes fu{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.an{opacity:0}.an.v{animation:fu .5s ease forwards}
 
-    /* ---- header ---- */
-    .hdr { text-align: center; margin-bottom: 30px; }
-    .logo { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 700; color: var(--teal); letter-spacing: -.3px; }
-    .logo b { color: var(--gold); font-weight: 700; }
-    .hdr p { font-size: 14px; color: var(--muted); margin-top: 2px; font-weight: 400; }
+/* Hero */
+.hero{text-align:center;margin-bottom:48px;animation:fu .6s ease}
+.hero-sub{display:inline-block;padding:5px 14px;background:linear-gradient(135deg,var(--primary),rgba(200,160,106,.2));border:1px solid rgba(200,160,106,.2);border-radius:20px;font-size:10.5px;font-weight:700;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px}
+.hero-for{font-size:13px;color:var(--primary-l);font-weight:600;margin-bottom:10px}
+.hero h1{font-family:'DM Serif Display',serif;font-size:clamp(26px,5.5vw,42px);line-height:1.12;margin-bottom:14px;letter-spacing:-.3px}
+.hero h1 .hl{color:var(--gold)}
+.hero h1 .hlr{color:var(--red)}
+.hero p{color:var(--muted);font-size:15.5px;line-height:1.6;max-width:520px;margin:0 auto}
 
-    /* ---- progress ---- */
-    .prog { display: flex; justify-content: center; gap: 8px; margin-bottom: 28px; }
-    .prog i { display: block; width: 36px; height: 3.5px; border-radius: 3px; background: var(--border); transition: .35s; }
-    .prog i.now { background: var(--teal); width: 52px; }
-    .prog i.ok { background: var(--gold); }
+/* Clinic card */
+.cc{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:24px;margin-bottom:36px;display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+.cc-logo{width:56px;height:56px;background:linear-gradient(135deg,var(--primary),var(--gold));border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px}
+.cc-info{flex:1;min-width:180px}
+.cc-info h3{font-size:15px;font-weight:700}.cc-info .sub{font-size:12px;color:var(--muted);margin-top:2px}
+.cc-stats{display:flex;gap:16px;flex-wrap:wrap;margin-left:auto}
+.cs{text-align:center;min-width:50px}.cs .n{font-size:18px;font-weight:700;color:var(--primary-l)}.cs .l{font-size:10px;color:var(--muted)}
 
-    /* ---- card ---- */
-    .card { background: var(--card); border-radius: var(--radius); box-shadow: 0 4px 24px rgba(0,0,0,0.06); padding: 30px 28px; animation: up .35s ease; }
-    @keyframes up { from { opacity: 0; transform: translateY(10px); } }
-    .card.hide { display: none; }
-    .tag { font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
-    .title { font-family: 'Cormorant Garamond', serif; font-size: 23px; font-weight: 600; line-height: 1.25; margin-bottom: 22px; }
+/* Big number */
+.big{background:linear-gradient(135deg,rgba(15,79,62,.12),rgba(200,160,106,.08));border:1px solid rgba(200,160,106,.15);border-radius:var(--r);padding:28px;text-align:center;margin:28px 0}
+.big .bn{font-family:'DM Serif Display',serif;font-size:44px;color:var(--gold);line-height:1}
+.big .bl{font-size:14px;color:var(--text);margin-top:6px}
+.big .bs{font-size:12.5px;color:var(--muted);margin-top:8px}
 
-    /* ---- fields ---- */
-    .f { margin-bottom: 16px; }
-    .f label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 5px; }
-    .f input, .f select { width: 100%; padding: 11px 14px; border: 1.5px solid var(--border); border-radius: var(--radius-sm); font-family: inherit; font-size: 14.5px; color: var(--text); background: var(--bg); outline: none; transition: .2s; -webkit-appearance: none; }
-    .f input:focus, .f select:focus { border-color: var(--focus); background: #fff; box-shadow: 0 0 0 3px rgba(26,107,90,.08); }
-    .f input::placeholder { color: #B8BCC4; }
+/* Section */
+.S{margin-bottom:44px}
+.tag{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.S h2{font-family:'DM Serif Display',serif;font-size:24px;margin-bottom:14px;line-height:1.2}
+.S .desc{color:var(--muted);font-size:14px;line-height:1.55;margin-bottom:18px}
+.div{height:1px;background:var(--border);margin:44px 0}
 
-    /* ---- option grid (services) ---- */
-    .ogrid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .ocard { padding: 15px 12px; border: 1.5px solid var(--border); border-radius: var(--radius-sm); cursor: pointer; background: var(--bg); text-align: center; transition: .2s; }
-    .ocard:hover { border-color: var(--teal); background: var(--teal-light); }
-    .ocard.sel { border-color: var(--teal); background: var(--teal-light); box-shadow: 0 0 0 3px rgba(26,107,90,.1); }
-    .ocard .ic { font-size: 26px; margin-bottom: 6px; }
-    .ocard .nm { font-size: 13px; font-weight: 600; }
-    .ocard .ds { font-size: 11px; color: var(--muted); margin-top: 2px; }
+/* Block cards - the 6 service blocks */
+.blocks{display:grid;gap:14px}
+.blk{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:22px;position:relative;overflow:hidden;transition:.2s}
+.blk::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:var(--r) var(--r) 0 0}
+.blk.b1::before{background:var(--red)}.blk.b2::before{background:var(--gold)}.blk.b3::before{background:var(--primary-l)}.blk.b4::before{background:var(--blue)}.blk.b5::before{background:var(--green)}.blk.b6::before{background:#A855F7}
+.blk-head{display:flex;gap:12px;align-items:center;margin-bottom:10px}
+.blk-ic{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.b1 .blk-ic{background:rgba(217,69,69,.1)}.b2 .blk-ic{background:rgba(200,160,106,.1)}.b3 .blk-ic{background:rgba(26,107,90,.1)}.b4 .blk-ic{background:rgba(75,139,245,.1)}.b5 .blk-ic{background:rgba(46,166,107,.1)}.b6 .blk-ic{background:rgba(168,85,247,.1)}
+.blk-t{font-weight:700;font-size:15px}
+.blk-items{padding-left:52px}
+.blk-item{font-size:13px;color:var(--muted);line-height:1.5;padding:3px 0;display:flex;gap:8px}
+.blk-item .dot{color:var(--primary-l);font-weight:700}
+.blk-money{font-size:12px;font-weight:600;color:var(--gold);margin-top:8px;padding-left:52px}
 
-    /* ---- doctors ---- */
-    .dgrid { display: grid; gap: 10px; }
-    .dcard { display: flex; align-items: center; gap: 13px; padding: 13px 15px; border: 1.5px solid var(--border); border-radius: var(--radius-sm); cursor: pointer; background: var(--bg); transition: .2s; }
-    .dcard:hover { border-color: var(--teal); background: var(--teal-light); }
-    .dcard.sel { border-color: var(--teal); background: var(--teal-light); box-shadow: 0 0 0 3px rgba(26,107,90,.1); }
-    .av { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, var(--teal), var(--gold)); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 14px; flex-shrink: 0; }
-    .dcard .nm { font-size: 14px; font-weight: 600; }
-    .dcard .sp { font-size: 12px; color: var(--muted); }
+/* Compare */
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}
+.cmp-col{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:22px 18px;position:relative;overflow:hidden}
+.cmp-col.bad::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--red)}
+.cmp-col.good::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--green)}
+.cmp-col h4{font-size:13px;font-weight:700;margin-bottom:12px}.cmp-col.bad h4{color:var(--red)}.cmp-col.good h4{color:var(--green)}
+.cmp-i{font-size:12px;color:var(--muted);line-height:1.45;padding:4px 0}
 
-    /* ---- calendar ---- */
-    .cal-hdr { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
-    .cal-hdr span { font-weight: 600; font-size: 15px; }
-    .cal-nav { display: flex; gap: 5px; }
-    .cal-nav button { width: 30px; height: 30px; border: 1.5px solid var(--border); border-radius: 50%; background: #fff; cursor: pointer; font-size: 13px; transition: .15s; color: var(--text); display: flex; align-items: center; justify-content: center; }
-    .cal-nav button:hover { border-color: var(--teal); color: var(--teal); }
-    .cgrid { display: grid; grid-template-columns: repeat(7,1fr); gap: 3px; margin-bottom: 18px; }
-    .cgrid .lbl { font-size: 11px; font-weight: 600; color: var(--muted); text-align: center; padding: 5px 0; }
-    .cgrid .d { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 13px; cursor: pointer; transition: .12s; font-weight: 500; }
-    .cgrid .d:hover:not(.off):not(.mt) { background: var(--teal-light); color: var(--teal); }
-    .cgrid .d.sel { background: var(--teal); color: #fff; font-weight: 700; }
-    .cgrid .d.td { box-shadow: inset 0 0 0 1.5px var(--gold); }
-    .cgrid .d.off { color: #D4D6DA; cursor: default; }
-    .cgrid .d.mt { cursor: default; }
+/* Flow */
+.flow{position:relative;padding-left:34px;margin:20px 0}
+.flow::before{content:'';position:absolute;left:11px;top:8px;bottom:8px;width:2px;background:linear-gradient(to bottom,var(--primary-l),var(--gold),var(--red),var(--green),var(--gold));border-radius:2px}
+.fs{position:relative;margin-bottom:20px}
+.fs::before{content:'';position:absolute;left:-27px;top:5px;width:12px;height:12px;border-radius:50%;border:2.5px solid var(--primary-l);background:var(--bg)}
+.fs.gold::before{border-color:var(--gold)}.fs.red::before{border-color:var(--red)}.fs.green::before{border-color:var(--green)}
+.fs .ft{font-weight:600;font-size:13.5px;margin-bottom:3px}
+.fs .fd{font-size:12.5px;color:var(--muted);line-height:1.45}
+.badge{display:inline-block;padding:2px 7px;border-radius:5px;font-size:9.5px;font-weight:700;letter-spacing:.4px;margin-left:5px;vertical-align:middle}
+.ba{background:rgba(26,107,90,.15);color:var(--primary-l)}.bt{background:rgba(200,160,106,.15);color:var(--gold)}.br{background:rgba(217,69,69,.12);color:var(--red)}
 
-    .tlbl { font-size: 13px; font-weight: 600; margin-bottom: 8px; }
-    .tgrid { display: grid; grid-template-columns: repeat(4,1fr); gap: 7px; }
-    .ts { padding: 10px 6px; border: 1.5px solid var(--border); border-radius: var(--radius-sm); text-align: center; font-size: 13px; font-weight: 500; cursor: pointer; transition: .15s; background: var(--bg); }
-    .ts:hover { border-color: var(--teal); background: var(--teal-light); }
-    .ts.sel { border-color: var(--teal); background: var(--teal); color: #fff; }
+/* Email mock */
+.em{background:#fff;border-radius:12px;overflow:hidden;max-width:380px;margin:18px auto;box-shadow:0 4px 24px rgba(0,0,0,.3)}
+.em-top{background:#f5f5f5;padding:10px 14px;border-bottom:1px solid #e5e5e5}
+.em-dots{display:flex;gap:5px;margin-bottom:6px}
+.em-dot{width:9px;height:9px;border-radius:50%}.em-dot.r{background:#ff5f57}.em-dot.y{background:#febc2e}.em-dot.g{background:#28c840}
+.em-from{font-size:10.5px;color:#666}.em-from b{color:#333}
+.em-subj{font-size:12.5px;font-weight:600;color:#333;margin-top:3px}
+.em-brand{background:#0F4F3E;padding:16px;text-align:center}
+.em-brand h3{color:white;font-size:18px;font-family:'DM Serif Display',serif}
+.em-cnt{padding:18px 14px}
+.em-cnt p{font-size:12px;color:#444;line-height:1.5;margin-bottom:8px}
+.em-btn{display:block;width:fit-content;margin:14px auto;padding:9px 22px;background:var(--primary-l);color:white;border-radius:7px;text-decoration:none;font-size:12px;font-weight:600}
 
-    /* ---- buttons ---- */
-    .brow { display: flex; gap: 10px; margin-top: 22px; }
-    .btn { flex: 1; padding: 13px 22px; border: none; border-radius: var(--radius-sm); font-family: inherit; font-size: 14.5px; font-weight: 600; cursor: pointer; transition: .2s; letter-spacing: .2px; }
-    .btn-p { background: var(--teal); color: #fff; }
-    .btn-p:hover { background: var(--teal-dark); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(26,107,90,.2); }
-    .btn-p:disabled { background: #B0C4BC; cursor: not-allowed; transform: none; box-shadow: none; }
-    .btn-b { background: 0; color: var(--muted); border: 1.5px solid var(--border); flex: 0 0 auto; padding: 13px 18px; }
-    .btn-b:hover { border-color: var(--muted); color: var(--text); }
+/* Dashboard mock */
+.dash{background:var(--card2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin:18px 0}
+.dash-top{background:var(--card);padding:14px 18px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.dash-top h4{font-size:14px}.dash-top .db{padding:3px 9px;border-radius:5px;font-size:10.5px;font-weight:600;background:rgba(46,166,107,.12);color:var(--green)}
+.dt{width:100%;border-collapse:collapse}
+.dt th{text-align:left;padding:9px 14px;font-size:10px;font-weight:600;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;border-bottom:1px solid var(--border)}
+.dt td{padding:10px 14px;font-size:12.5px;border-bottom:1px solid var(--border)}
+.dt tr:last-child td{border:none}
+.ds{display:inline-block;padding:2px 9px;border-radius:5px;font-size:10.5px;font-weight:600}
+.ds-b{background:rgba(75,139,245,.12);color:var(--blue)}.ds-v{background:rgba(46,166,107,.12);color:var(--green)}.ds-n{background:rgba(217,69,69,.12);color:var(--red)}.ds-c{background:rgba(200,160,106,.12);color:var(--gold)}
 
-    /* ---- success ---- */
-    .suc { text-align: center; padding: 16px 0; }
-    .suc-ic { width: 68px; height: 68px; background: var(--ok-bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; animation: pop .45s cubic-bezier(.175,.885,.32,1.275); }
-    @keyframes pop { 0% { transform: scale(0); } 100% { transform: scale(1); } }
-    .suc-ic svg { width: 30px; height: 30px; color: var(--ok); }
-    .suc h2 { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 600; margin-bottom: 8px; }
-    .suc p { color: var(--muted); font-size: 14.5px; line-height: 1.55; }
-    .summ { background: var(--bg); border-radius: var(--radius-sm); padding: 16px; margin-top: 18px; text-align: left; }
-    .summ .r { display: flex; justify-content: space-between; padding: 5px 0; font-size: 13.5px; }
-    .summ .l { color: var(--muted); }
-    .summ .v { font-weight: 600; }
+/* Report mock */
+.rpt{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:22px;margin:18px 0}
+.rpt h4{font-size:13px;font-weight:600;margin-bottom:14px}
+.rpt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.rpt-i{background:var(--card2);border-radius:9px;padding:14px 10px;text-align:center}
+.rpt-i .rn{font-size:22px;font-weight:700;color:var(--primary-l)}
+.rpt-i .rl{font-size:10px;color:var(--muted);margin-top:2px}
 
-    .foot { text-align: center; margin-top: 24px; font-size: 11.5px; color: #B8BCC4; }
-    .foot a { color: var(--teal); text-decoration: none; }
+/* ROI */
+.roi{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:24px;margin:22px 0}
+.roi h3{font-family:'DM Serif Display',serif;font-size:20px;margin-bottom:18px}
+.rr{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--border);font-size:13.5px;align-items:center}
+.rr:last-child{border:none;padding-top:12px}
+.rr .rv{font-weight:700;color:var(--primary-l)}
+.roi-total{background:linear-gradient(135deg,var(--primary),var(--primary-l));border-radius:12px;padding:22px;text-align:center;margin-top:14px}
+.roi-total .rtn{font-size:34px;font-weight:700;color:white;font-family:'DM Serif Display',serif}
+.roi-total .rtl{font-size:13px;color:rgba(255,255,255,.7);margin-top:4px}
 
-    .spin { display: inline-block; width: 16px; height: 16px; border: 2.5px solid rgba(255,255,255,.3); border-radius: 50%; border-top-color: #fff; animation: sp .6s linear infinite; vertical-align: middle; margin-right: 7px; }
-    @keyframes sp { to { transform: rotate(360deg); } }
+/* Growth Partner */
+.gp{margin:18px 0}
+.gp-step{display:flex;gap:14px;margin-bottom:16px}
+.gp-num{width:36px;height:36px;border-radius:50%;background:var(--card);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;color:var(--gold)}
+.gp-c h4{font-size:13.5px;font-weight:600;margin-bottom:2px}
+.gp-c p{font-size:12.5px;color:var(--muted);line-height:1.4}
 
-    @media(max-width:480px) {
-      .wrap { padding: 20px 14px 36px; }
-      .card { padding: 22px 18px; }
-      .tgrid { grid-template-columns: repeat(3,1fr); }
-      .logo { font-size: 28px; }
-    }
-  </style>
+/* AI teaser */
+.ai-box{background:linear-gradient(135deg,var(--card),var(--card2));border:1px solid rgba(200,160,106,.2);border-radius:var(--r);padding:24px;text-align:center;margin:22px 0}
+.ai-box .ai-ic{font-size:36px;margin-bottom:10px}
+.ai-box h3{font-family:'DM Serif Display',serif;font-size:18px;margin-bottom:8px}
+.ai-box p{font-size:13px;color:var(--muted);line-height:1.5;max-width:450px;margin:0 auto}
+.ai-badge{display:inline-block;padding:4px 12px;background:rgba(200,160,106,.12);border-radius:6px;font-size:10px;font-weight:700;color:var(--gold);letter-spacing:.5px;margin-top:12px}
+
+/* Timeline */
+.tl{margin:18px 0}
+.tl-s{display:flex;gap:14px;margin-bottom:18px}
+.tl-n{width:34px;height:34px;border-radius:50%;background:var(--primary);color:white;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.tl-c h4{font-size:14px;font-weight:600;margin-bottom:2px}
+.tl-c p{font-size:12.5px;color:var(--muted);line-height:1.4}
+
+/* CTA */
+.cta{background:linear-gradient(135deg,var(--primary),var(--primary-l));border-radius:var(--r);padding:32px 24px;text-align:center;margin:36px 0}
+.cta h2{font-family:'DM Serif Display',serif;font-size:26px;color:white;margin-bottom:10px}
+.cta p{color:rgba(255,255,255,.7);font-size:14px;margin-bottom:22px}
+.cta a{display:inline-block;padding:13px 32px;background:white;color:var(--primary);border-radius:10px;text-decoration:none;font-weight:700;font-size:14px;transition:.2s}
+.cta a:hover{transform:translateY(-2px);box-shadow:0 4px 20px rgba(0,0,0,.2)}
+
+.foot{text-align:center;font-size:11px;color:var(--muted);margin-top:36px}
+.foot a{color:var(--primary-l);text-decoration:none}
+
+@media(max-width:560px){.cmp{grid-template-columns:1fr}.rpt-grid{grid-template-columns:repeat(2,1fr)}.cc{flex-direction:column}.cc-stats{margin-left:0}}
+</style>
 </head>
 <body>
 
-<div class="lang">
-  <button class="on" onclick="setLang('lv')">LAT</button>
-  <button onclick="setLang('ru')">РУС</button>
+<div class="L"><button class="on" onclick="setL('lv')">LAT</button><button onclick="setL('ru')">РУС</button></div>
+
+<div class="W">
+
+<!-- HERO -->
+<div class="hero">
+<div class="hero-sub">AI GrowthOps</div>
+<div class="hero-for" data-lv="Sagatavots Dr. Jūlijas Katkevičas diennakts zobārstniecībai" data-ru="Подготовлено для Дежурной стоматологии Др. Юлии Каткевичи"></div>
+<h1 data-lv="13 gadi. 25,000+ pacientu. <span class='hlr'>Tūkstošiem no viņiem nekad neatgriezās.</span> Mēs to <span class='hl'>mainīsim</span>." data-ru="13 лет. 25,000+ пациентов. <span class='hlr'>Тысячи из них никогда не вернулись.</span> Мы это <span class='hl'>изменим</span>."></h1>
+<p data-lv="6 automatizētas sistēmas, kas strādā 24/7 — tāpat kā jūsu klīnika. Bez papildu darbaspēka." data-ru="6 автоматизированных систем, которые работают 24/7 — как ваша клиника. Без дополнительного персонала."></p>
 </div>
 
-<div class="wrap">
-  <div class="hdr">
-    <div class="logo">i<b>Dental</b></div>
-    <p data-lv="Pieraksts vizītei" data-ru="Запись на приём"></p>
-  </div>
+<!-- CLINIC CARD -->
+<div class="cc">
+<div class="cc-logo">🦷</div>
+<div class="cc-info"><h3>Dr. Jūlijas Katkevičas diennakts zobārstniecība</h3><div class="sub">Slokas iela 65b, Rīga · 24/7 · Kopš 2013</div></div>
+<div class="cc-stats">
+<div class="cs"><div class="n">13</div><div class="l" data-lv="gadi" data-ru="лет"></div></div>
+<div class="cs"><div class="n">1,729</div><div class="l">Google ★</div></div>
+<div class="cs"><div class="n">4.4</div><div class="l" data-lv="reitings" data-ru="рейтинг"></div></div>
+<div class="cs"><div class="n">24/7</div><div class="l" data-lv="režīms" data-ru="режим"></div></div>
+</div>
+</div>
 
-  <div class="prog">
-    <i class="now" id="p1"></i>
-    <i id="p2"></i>
-    <i id="p3"></i>
-  </div>
+<!-- BIG NUMBER -->
+<div class="big">
+<div class="bn">~25,000+</div>
+<div class="bl" data-lv="pacientu jūsu bāzē par 13 gadiem" data-ru="пациентов в вашей базе за 13 лет"></div>
+<div class="bs" data-lv="No tiem ~15,000-18,000 nav atgriezušies. Katrs no viņiem varētu atkal kļūt par jūsu pacientu." data-ru="Из них ~15,000-18,000 не вернулись. Каждый из них мог бы снова стать вашим пациентом."></div>
+</div>
 
-  <!-- STEP 1 -->
-  <div class="card" id="s1">
-    <div class="tag" data-lv="1. SOLIS" data-ru="1. ШАГ"></div>
-    <div class="title" data-lv="Kontaktinformācija" data-ru="Контактная информация"></div>
-    <div class="f">
-      <label data-lv="Vārds, Uzvārds" data-ru="Имя, Фамилия"></label>
-      <input type="text" id="i-name" data-lv-ph="Jānis Bērziņš" data-ru-ph="Иван Иванов">
-    </div>
-    <div class="f">
-      <label data-lv="Tālrunis" data-ru="Телефон"></label>
-      <input type="tel" id="i-phone" placeholder="+371 2XXXXXXX">
-    </div>
-    <div class="f">
-      <label data-lv="E-pasts" data-ru="E-mail"></label>
-      <input type="email" id="i-email" data-lv-ph="janis@epasts.lv" data-ru-ph="ivan@mail.lv">
-    </div>
-    <div class="brow">
-      <button class="btn btn-p" onclick="go(2)" data-lv="Turpināt" data-ru="Продолжить"></button>
-    </div>
-  </div>
+<div class="div"></div>
 
-  <!-- STEP 2 -->
-  <div class="card hide" id="s2">
-    <div class="tag" data-lv="2. SOLIS" data-ru="2. ШАГ"></div>
-    <div class="title" data-lv="Pakalpojums un ārsts" data-ru="Услуга и врач"></div>
-    <label style="font-size:13px;font-weight:600;margin-bottom:8px;display:block" data-lv="Izvēlieties pakalpojumu" data-ru="Выберите услугу"></label>
-    <div class="ogrid" id="svc-g"></div>
-    <label style="font-size:13px;font-weight:600;margin:16px 0 8px;display:block" data-lv="Izvēlieties ārstu" data-ru="Выберите врача"></label>
-    <div class="dgrid" id="doc-g"></div>
-    <div class="brow">
-      <button class="btn btn-b" onclick="go(1)" data-lv="Atpakaļ" data-ru="Назад"></button>
-      <button class="btn btn-p" onclick="go(3)" data-lv="Turpināt" data-ru="Продолжить"></button>
-    </div>
-  </div>
+<!-- 6 BLOCKS -->
+<div class="S">
+<div class="tag" data-lv="6 SISTĒMAS JŪSU KLĪNIKAI" data-ru="6 СИСТЕМ ДЛЯ ВАШЕЙ КЛИНИКИ"></div>
+<h2 data-lv="Katrs bloks atrisina konkrētu problēmu" data-ru="Каждый блок решает конкретную проблему"></h2>
 
-  <!-- STEP 3 -->
-  <div class="card hide" id="s3">
-    <div class="tag" data-lv="3. SOLIS" data-ru="3. ШАГ"></div>
-    <div class="title" data-lv="Datums un laiks" data-ru="Дата и время"></div>
-    <div class="cal-hdr">
-      <span id="cm"></span>
-      <div class="cal-nav"><button onclick="cNav(-1)">‹</button><button onclick="cNav(1)">›</button></div>
-    </div>
-    <div class="cgrid" id="cg"></div>
-    <div class="tlbl" data-lv="Pieejamie laiki" data-ru="Доступное время"></div>
-    <div class="tgrid" id="tg"></div>
-    <div class="brow">
-      <button class="btn btn-b" onclick="go(2)" data-lv="Atpakaļ" data-ru="Назад"></button>
-      <button class="btn btn-p" id="btn-ok" onclick="submit()" data-lv="Apstiprināt" data-ru="Подтвердить"></button>
-    </div>
-  </div>
+<div class="blocks">
 
-  <!-- SUCCESS -->
-  <div class="card hide" id="s4">
-    <div class="suc">
-      <div class="suc-ic"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div>
-      <h2 data-lv="Pieraksts apstiprināts!" data-ru="Запись подтверждена!"></h2>
-      <p data-lv="Mēs nosūtīsim apstiprinājumu uz Jūsu e-pastu." data-ru="Мы отправим подтверждение на вашу почту."></p>
-      <div class="summ" id="summ"></div>
-    </div>
-  </div>
+<!-- Block 1 -->
+<div class="blk b1">
+<div class="blk-head"><div class="blk-ic">🔄</div><div class="blk-t" data-lv="1. Pacientu atgriešana" data-ru="1. Возврат пациентов"></div></div>
+<div class="blk-items">
+<div class="blk-item"><span class="dot">→</span><span data-lv="No-show: automātiski sazinās nākamajā dienā un piedāvā jaunu laiku" data-ru="No-show: автоматически связывается на следующий день и предлагает новое время"></span></div>
+<div class="blk-item"><span class="dot">→</span><span data-lv="Pazaudētie: 4-soļu e-pastu/SMS ķēde (1d → 4d → 7d → 30d)" data-ru="Потерянные: 4-шаговая цепочка email/SMS (1д → 4д → 7д → 30д)"></span></div>
+<div class="blk-item"><span class="dot">→</span><span data-lv="Vecās bāzes: importējam visus 25,000+ un reaktivējam pa 500" data-ru="Старые базы: импортируем все 25,000+ и реактивируем по 500"></span></div>
+</div>
 
-  <div class="foot">
-    <span data-lv="Pierakstu nodrošina" data-ru="Запись обеспечена"></span> <a href="#">iDental</a> · Tērbatas iela 78, Rīga
-  </div>
+</div>
+
+<!-- Block 2 -->
+<div class="blk b2">
+<div class="blk-head"><div class="blk-ic">📅</div><div class="blk-t" data-lv="2. Tukšo logu aizpildīšana" data-ru="2. Заполнение пустых окон"></div></div>
+<div class="blk-items">
+<div class="blk-item"><span class="dot">→</span><span data-lv="Atcelšana → 30 sek. piedāvā slotu gaidīšanas sarakstam" data-ru="Отмена → за 30 сек. предлагает слот листу ожидания"></span></div>
+<div class="blk-item"><span class="dot">→</span><span data-lv="Automātiski aizpilda 60-70% atcelto slotu" data-ru="Автоматически заполняет 60-70% отменённых слотов"></span></div>
+<div class="blk-item"><span class="dot">→</span><span data-lv="Īpaši svarīgi 24/7 režīmā — neviens tukšs krēsls" data-ru="Особенно важно в режиме 24/7 — ни одного пустого кресла"></span></div>
+</div>
+
+</div>
+
+<!-- Block 3 -->
+<div class="blk b3">
+<div class="blk-head"><div class="blk-ic">🤖</div><div class="blk-t" data-lv="3. Administrācijas automatizācija" data-ru="3. Автоматизация администрирования"></div></div>
+<div class="blk-items">
+<div class="blk-item"><span class="dot">→</span><span data-lv="Pieraksta apstiprinājumi — automātiski ar visiem datiem" data-ru="Подтверждения записи — автоматически со всеми деталями"></span></div>
+<div class="blk-item"><span class="dot">→</span><span data-lv="Atgādinājumi -1 diena un -2 stundas pirms vizītes" data-ru="Напоминания за 1 день и 2 часа до визита"></span></div>
+<div class="blk-item"><span class="dot">→</span><span data-lv="Atcelšanas apstrāde — automātiski piedāvā pārrakstīties" data-ru="Обработка отмен — автоматически предлагает перезаписаться"></span></div>
+<div class="blk-item"><span class="dot">→</span><span data-lv="Vairs nav manuālu zvanu un atgādinājumu — sistēma visu dara pati" data-ru="Больше никаких ручных звонков и напоминаний — система всё делает сама"></span></div>
+<div class="blk-item"><span class="dot">→</span><span data-lv="Administrators var fokusēties uz pacientiem klīnikā, ne pie telefona" data-ru="Администратор может фокусироваться на пациентах в клинике, а не на телефоне"></span></div>
+</div>
+<div class="blk-money" data-lv="Rezultāts: administrācija strādā gudrāk, ne vairāk" data-ru="Результат: администрация работает умнее, а не больше"></div>
+</div>
+
+<!-- Block 4 -->
+<div class="blk b4">
+<div class="blk-head"><div class="blk-ic">📊</div><div class="blk-t" data-lv="4. Analītika un atskaites" data-ru="4. Аналитика и отчёты"></div></div>
+<div class="blk-items">
+<div class="blk-item"><span class="dot">→</span><span data-lv="Cik pacientu atnāca šomēnes / cik atgriezti" data-ru="Сколько пациентов пришло в этом месяце / сколько вернулось"></span></div>
+<div class="blk-item"><span class="dot">→</span><span data-lv="No-show procents un dinamika (bija 18% → kļuva 8%)" data-ru="Процент no-show и динамика (было 18% → стало 8%)"></span></div>
+<div class="blk-item"><span class="dot">→</span><span data-lv="Ārstu noslodze, populārākie pakalpojumi, atcelšanu iemesli" data-ru="Загрузка врачей, популярные услуги, причины отмен"></span></div>
+</div>
+<div class="blk-money" data-lv="Vērtība: pilna izpratne par klīnikas veselību" data-ru="Ценность: полное понимание здоровья клиники"></div>
+</div>
+
+<!-- Block 5 -->
+<div class="blk b5">
+<div class="blk-head"><div class="blk-ic">💎</div><div class="blk-t" data-lv="5. Atkārtotie apmeklējumi (LTV)" data-ru="5. Повторные визиты (LTV)"></div></div>
+<div class="blk-items">
+<div class="blk-item"><span class="dot">→</span><span data-lv="Pēc 6 mēnešiem automātiski aicina uz higiēnu/apskati" data-ru="Через 6 месяцев автоматически приглашает на гигиену/осмотр"></span></div>
+<div class="blk-item"><span class="dot">→</span><span data-lv="Pēc plombēšanas — kontroles apskate pēc 3 mēnešiem" data-ru="После пломбирования — контрольный осмотр через 3 месяца"></span></div>
+<div class="blk-item"><span class="dot">→</span><span data-lv="Pacients neatgriežas vienu reizi — viņš atgriežas mūžīgi" data-ru="Пациент возвращается не один раз — он возвращается вечно"></span></div>
+</div>
+<div class="blk-money" data-lv="Rezultāts: pacienti atgriežas regulāri" data-ru="Результат: пациенты возвращаются регулярно"></div>
+</div>
+
+<!-- Block 6 -->
+<div class="blk b6">
+<div class="blk-head"><div class="blk-ic">📣</div><div class="blk-t" data-lv="6. Mārketings un kampaņas" data-ru="6. Маркетинг и кампании"></div></div>
+<div class="blk-items">
+<div class="blk-item"><span class="dot">→</span><span data-lv="Google atsauksmju vākšana — no 1,729 uz 3,000+ (automātiski)" data-ru="Сбор Google отзывов — с 1,729 до 3,000+ (автоматически)"></span></div>
+<div class="blk-item"><span class="dot">→</span><span data-lv="Sezonas kampaņas — balināšana, higiēna, implanti" data-ru="Сезонные кампании — отбеливание, гигиена, импланты"></span></div>
+<div class="blk-item"><span class="dot">→</span><span data-lv="Dzimšanas dienas atlaides — automātiski" data-ru="Скидки на день рождения — автоматически"></span></div>
+<div class="blk-item"><span class="dot">→</span><span data-lv="Rekomendāciju programma — 'Iesaki draugam'" data-ru="Реферальная программа — 'Порекомендуй другу'"></span></div>
+</div>
+<div class="blk-money" data-lv="Rezultāts: jauni pacienti bez reklāmas budžeta" data-ru="Результат: новые пациенты без рекламного бюджета"></div>
+</div>
+
+</div>
+</div>
+
+<div class="div"></div>
+
+<!-- BEFORE / AFTER -->
+<div class="S">
+<div class="tag" data-lv="PIRMS / PĒC" data-ru="ДО / ПОСЛЕ"></div>
+<h2 data-lv="Kā mainīsies jūsu klīnika" data-ru="Как изменится ваша клиника"></h2>
+<div class="cmp">
+<div class="cmp-col bad"><h4 data-lv="❌ Tagad" data-ru="❌ Сейчас"></h4>
+<div class="cmp-i" data-lv="• 15,000+ pacientu nav atgriezušies" data-ru="• 15,000+ пациентов не вернулись"></div>
+<div class="cmp-i" data-lv="• Atcelšana = tukšs krēsls" data-ru="• Отмена = пустое кресло"></div>
+<div class="cmp-i" data-lv="• No-show — neviens nepārzvanina" data-ru="• No-show — никто не перезванивает"></div>
+<div class="cmp-i" data-lv="• Administrators 3h/d pie telefona" data-ru="• Администратор 3ч/д на телефоне"></div>
+<div class="cmp-i" data-lv="• Nav skaidras analītikas par pacientu plūsmu" data-ru="• Нет чёткой аналитики по потоку пациентов"></div>
+</div>
+<div class="cmp-col good"><h4 data-lv="✓ Ar mūsu sistēmu" data-ru="✓ С нашей системой"></h4>
+<div class="cmp-i" data-lv="• Katrs pacients atgriežas ik 6 mēn." data-ru="• Каждый пациент возвращается каждые 6 мес."></div>
+<div class="cmp-i" data-lv="• Atcelšana → uzreiz piedāvā citu laiku" data-ru="• Отмена → сразу предлагает другое время"></div>
+<div class="cmp-i" data-lv="• No-show → auto zvans nākamajā dienā" data-ru="• No-show → авто сообщение на следующий день"></div>
+<div class="cmp-i" data-lv="• Administrators fokusējas uz pacientiem" data-ru="• Администратор фокусируется на пациентах"></div>
+<div class="cmp-i" data-lv="• Ikmēneša atskaite ar visiem skaitļiem" data-ru="• Ежемесячный отчёт со всеми цифрами"></div>
+</div>
+</div>
+</div>
+
+<div class="div"></div>
+
+<!-- EMAIL PREVIEW -->
+<div class="S">
+<div class="tag" data-lv="E-PASTA PIEMĒRS" data-ru="ПРИМЕР EMAIL"></div>
+<h2 data-lv="Profesionāli ziņojumi jūsu vārdā" data-ru="Профессиональные сообщения от вашего имени"></h2>
+<div class="em">
+<div class="em-top"><div class="em-dots"><div class="em-dot r"></div><div class="em-dot y"></div><div class="em-dot g"></div></div><div class="em-from"><b>Diennakts Zobārstniecība</b></div><div class="em-subj" data-lv="Jūsu pieraksts apstiprināts ✓" data-ru="Ваша запись подтверждена ✓"></div></div>
+<div class="em-brand"><h3>Dr. Katkevičas<br>Diennakts Zobārstniecība</h3></div>
+<div class="em-cnt">
+<p style="font-size:14px;color:#1a1a1a;font-weight:600" data-lv="Pieraksts apstiprināts!" data-ru="Запись подтверждена!"></p>
+<div style="background:#fafaf8;padding:12px;border-radius:7px;margin:10px 0">
+<p style="margin:3px 0">🦷 <strong>Zobu higiēna</strong></p>
+<p style="margin:3px 0">👨‍⚕️ Dr. Julija Katkevica</p>
+<p style="margin:3px 0">📅 2026-03-24 — 14:00</p>
+<p style="margin:3px 0">📍 Slokas iela 65b, Rīga</p>
+</div>
+<a href="#" class="em-btn" data-lv="Mainīt pierakstu" data-ru="Изменить запись"></a>
+<p style="text-align:center;margin-top:6px"><a href="#" style="color:#D94545;font-size:11px;text-decoration:none" data-lv="Atcelt pierakstu" data-ru="Отменить запись"></a></p>
+</div>
+</div>
+</div>
+
+<div class="div"></div>
+
+<!-- DASHBOARD -->
+<div class="S">
+<div class="tag" data-lv="KLĪNIKAS PANELIS" data-ru="ПАНЕЛЬ КЛИНИКИ"></div>
+<h2 data-lv="Pilna kontrole no vienas vietas" data-ru="Полный контроль из одного места"></h2>
+<div class="dash">
+<div class="dash-top"><h4 data-lv="Šodienas pieraksti" data-ru="Записи на сегодня"></h4><div class="db">6 / 8</div></div>
+<table class="dt"><thead><tr><th data-lv="Pacients" data-ru="Пациент"></th><th data-lv="Laiks" data-ru="Время"></th><th data-lv="Statuss" data-ru="Статус"></th><th data-lv="Darbība" data-ru="Действие"></th></tr></thead>
+<tbody>
+<tr><td>Anna B.</td><td>09:00</td><td><span class="ds ds-v" data-lv="Bija" data-ru="Был"></span></td><td>—</td></tr>
+<tr><td>Jānis K.</td><td>10:30</td><td><span class="ds ds-v" data-lv="Bija" data-ru="Был"></span></td><td>—</td></tr>
+<tr><td>Līga O.</td><td>13:00</td><td><span class="ds ds-b" data-lv="Gaida" data-ru="Ожидает"></span></td><td style="font-size:11px"><span style="color:var(--green);cursor:pointer">✓</span> <span style="color:var(--red);cursor:pointer">✗</span></td></tr>
+<tr><td>Viktors M.</td><td>15:00</td><td><span class="ds ds-n">No-show</span></td><td style="font-size:10px;color:var(--muted)">Auto ✓</td></tr>
+<tr><td>Kristīne Z.</td><td>16:30</td><td><span class="ds ds-c" data-lv="Atcelts" data-ru="Отменён"></span></td><td style="font-size:10px;color:var(--muted)">Auto ✓</td></tr>
+</tbody></table>
+</div>
+</div>
+
+<div class="div"></div>
+
+<!-- MONTHLY REPORT -->
+<div class="S">
+<div class="tag" data-lv="ATSKAITE" data-ru="ОТЧЁТ"></div>
+<h2 data-lv="Ikmēneša atskaites piemērs" data-ru="Пример ежемесячного отчёта"></h2>
+<div class="rpt">
+<h4 data-lv="📊 Marts 2026" data-ru="📊 Март 2026"></h4>
+<div class="rpt-grid">
+<div class="rpt-i"><div class="rn">847</div><div class="rl" data-lv="ziņas nosūtītas" data-ru="сообщений отправлено"></div></div>
+<div class="rpt-i"><div class="rn">42</div><div class="rl" data-lv="pacienti atgriezti" data-ru="пациентов вернулось"></div></div>
+<div class="rpt-i"><div class="rn">93%</div><div class="rl" data-lv="piegādāšanas rādītājs" data-ru="показатель доставки"></div></div>
+<div class="rpt-i"><div class="rn">8.2%</div><div class="rl" data-lv="no-show (bija 18%)" data-ru="no-show (было 18%)"></div></div>
+<div class="rpt-i"><div class="rn">+34</div><div class="rl" data-lv="jaunas atsauksmes" data-ru="новых отзывов"></div></div>
+<div class="rpt-i"><div class="rn">4.5★</div><div class="rl" data-lv="reitings (bija 4.4)" data-ru="рейтинг (было 4.4)"></div></div>
+</div>
+</div>
+</div>
+
+<div class="div"></div>
+
+<div class="div"></div>
+
+<!-- GROWTH PARTNER -->
+<div class="S">
+<div class="tag" data-lv="PARTNERĪBA" data-ru="ПАРТНЁРСТВО"></div>
+<h2 data-lv="Mēs neesam vienkārši pakalpojums — mēs esam jūsu izaugsmes partneris" data-ru="Мы не просто сервис — мы ваш партнёр по росту"></h2>
+<p class="desc" data-lv="Katru mēnesi jūs saņemat:" data-ru="Каждый месяц вы получаете:"></p>
+<div class="gp">
+<div class="gp-step"><div class="gp-num">1</div><div class="gp-c"><h4 data-lv="Pastāvīga pacientu atgriešana" data-ru="Постоянный возврат пациентов"></h4><p data-lv="Jauna pacientu partija katru mēnesi. Bāze nav galīga — 6 mēn. cikls darbojas mūžīgi." data-ru="Новая партия пациентов каждый месяц. База не конечна — 6-мес. цикл работает вечно."></p></div></div>
+<div class="gp-step"><div class="gp-num">2</div><div class="gp-c"><h4 data-lv="Grafika optimizācija" data-ru="Оптимизация расписания"></h4><p data-lv="Tukšo logu aizpildīšana, atcelšanu apstrāde, gaidīšanas saraksts." data-ru="Заполнение пустых слотов, обработка отмен, лист ожидания."></p></div></div>
+<div class="gp-step"><div class="gp-num">3</div><div class="gp-c"><h4 data-lv="Detalizēta atskaite" data-ru="Детальный отчёт"></h4><p data-lv="Skaitļi, grafiki, tendences — jūs redzat precīzi kur nauda nāk un kur zūd." data-ru="Цифры, графики, тенденции — вы видите точно где деньги приходят и где теряются."></p></div></div>
+<div class="gp-step"><div class="gp-num">4</div><div class="gp-c"><h4 data-lv="Jaunas idejas un uzlabojumi" data-ru="Новые идеи и улучшения"></h4><p data-lv="Sezonas kampaņas, dzimšanas dienu atlaides, rekomendāciju programma — katru mēnesi kaut kas jauns." data-ru="Сезонные акции, скидки на день рождения, реферальная программа — каждый месяц что-то новое."></p></div></div>
+</div>
+</div>
+
+<div class="div"></div>
+
+<!-- AI VOICE TEASER -->
+<div class="S">
+<div class="tag" data-lv="NĀKOTNE" data-ru="БУДУЩЕЕ"></div>
+<h2 data-lv="Un tas ir tikai sākums" data-ru="И это только начало"></h2>
+<div class="ai-box">
+<div class="ai-ic">🎙️</div>
+<h3 data-lv="AI balss asistents — drīzumā" data-ru="AI голосовой ассистент — скоро"></h3>
+<p data-lv="Iedomājieties: pacients zvana plkst. 3:00 naktī. AI asistents atbild latviski vai krieviski, pieraksta vizītei, atbild uz jautājumiem par cenām un pakalpojumiem. Strādā 24/7 — tāpat kā jūsu klīnika." data-ru="Представьте: пациент звонит в 3:00 ночи. AI ассистент отвечает на латышском или русском, записывает на визит, отвечает на вопросы о ценах и услугах. Работает 24/7 — как ваша клиника."></p>
+<div class="ai-badge" data-lv="PIEEJAMS 2. FĀZĒ" data-ru="ДОСТУПНО ВО 2-Й ФАЗЕ"></div>
+</div>
+</div>
+
+<div class="div"></div>
+
+
+<!-- CLOSING -->
+<div class="cta">
+<h2 data-lv="Aprunāsimies pirmdien" data-ru="Поговорим в понедельник"></h2>
+<p data-lv="Parādīšu kā tas izskatītos tieši jūsu klīnikā." data-ru="Покажу как это будет выглядеть именно для вашей клиники."></p>
+</div>
+
+<div class="foot">AI GrowthOps · Rīga, Latvia · <a href="mailto:team@ai-growthops.com">team@ai-growthops.com</a></div>
+
 </div>
 
 <script>
-// ===================== CONFIG =====================
-const WEBHOOK_LEAD    = 'https://demmssss.app.n8n.cloud/webhook-test/lead-capture';
-const WEBHOOK_BOOKING = 'https://demmssss.app.n8n.cloud/webhook-test/booking';
-
-const SVC = [
-  { id:'apskate', ic:'🦷', lv:'Zobu apskate', ru:'Осмотр', lv_d:'~30 min', ru_d:'~30 мин' },
-  { id:'higiena', ic:'✨', lv:'Zobu higiēna', ru:'Гигиена', lv_d:'~45 min', ru_d:'~45 мин' },
-  { id:'plombesana', ic:'🔧', lv:'Plombēšana', ru:'Пломбирование', lv_d:'~60 min', ru_d:'~60 мин' },
-  { id:'balosana', ic:'💎', lv:'Zobu balošana', ru:'Отбеливание', lv_d:'~90 min', ru_d:'~90 мин' }
-];
-const DOC = [
-  { id:'dr1', name:'Dr. Ieva Liepiņa', lv_s:'Vispārējā zobārstniecība', ru_s:'Общая стоматология', ini:'IL' },
-  { id:'dr2', name:'Dr. Mārtiņš Kalniņš', lv_s:'Zobu higiēnists', ru_s:'Гигиенист', ini:'MK' },
-  { id:'dr3', name:'Dr. Anna Ozoliņa', lv_s:'Estētiskā zobārstniecība', ru_s:'Эстетическая стоматология', ini:'AO' }
-];
-const SLOTS = ['09:00','09:30','10:00','10:30','11:00','11:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30'];
-const DL = { lv:['Pr','Ot','Tr','Ce','Pk','Se','Sv'], ru:['Пн','Вт','Ср','Чт','Пт','Сб','Вс'] };
-const MN = { lv:['Janvāris','Februāris','Marts','Aprīlis','Maijs','Jūnijs','Jūlijs','Augusts','Septembris','Oktobris','Novembris','Decembris'], ru:['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'] };
-
-// ===================== STATE =====================
-let L='lv', step=1, pickedSvc=null, pickedDoc=null, pickedDate=null, pickedTime=null;
-let cY, cM;
-const token = new URLSearchParams(location.search).get('token') || '';
-
-// ===================== LANG =====================
-function setLang(l) {
-  L=l;
-  document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('on', b.textContent===(l==='lv'?'LAT':'РУС')));
-  document.querySelectorAll('[data-lv]').forEach(e=>e.textContent=e.getAttribute('data-'+l));
-  document.querySelectorAll('[data-lv-ph]').forEach(e=>e.placeholder=e.getAttribute('data-'+l+'-ph')||'');
-  rSvc(); rDoc(); rCal(); rTime();
-}
-
-// ===================== RENDER =====================
-function rSvc() {
-  document.getElementById('svc-g').innerHTML = SVC.map(s=>`<div class="ocard${pickedSvc===s.id?' sel':''}" onclick="pickedSvc='${s.id}';rSvc()"><div class="ic">${s.ic}</div><div class="nm">${s[L]}</div><div class="ds">${s[L+'_d']}</div></div>`).join('');
-}
-function rDoc() {
-  document.getElementById('doc-g').innerHTML = DOC.map(d=>`<div class="dcard${pickedDoc===d.id?' sel':''}" onclick="pickedDoc='${d.id}';rDoc()"><div class="av">${d.ini}</div><div><div class="nm">${d.name}</div><div class="sp">${d[L==='lv'?'lv_s':'ru_s']}</div></div></div>`).join('');
-}
-function rCal() {
-  const el=document.getElementById('cg'), me=document.getElementById('cm');
-  me.textContent=MN[L][cM]+' '+cY;
-  const f=new Date(cY,cM,1); let s=f.getDay()-1; if(s<0) s=6;
-  const dim=new Date(cY,cM+1,0).getDate(), today=new Date(); today.setHours(0,0,0,0);
-  let h=DL[L].map(d=>`<div class="lbl">${d}</div>`).join('');
-  for(let i=0;i<s;i++) h+='<div class="d mt"></div>';
-  for(let d=1;d<=dim;d++){
-    const dt=new Date(cY,cM,d), past=dt<today, sun=dt.getDay()===0, dis=past||sun;
-    const isTd=dt.getTime()===today.getTime(), isSel=pickedDate&&pickedDate.getTime()===dt.getTime();
-    let c='d'; if(dis) c+=' off'; if(isTd) c+=' td'; if(isSel) c+=' sel';
-    h+=`<div class="${c}"${dis?'':`onclick="pickDate(${cY},${cM},${d})"`}>${d}</div>`;
-  }
-  el.innerHTML=h;
-}
-function rTime() {
-  document.getElementById('tg').innerHTML = SLOTS.map(t=>`<div class="ts${pickedTime===t?' sel':''}" onclick="pickedTime='${t}';rTime()">${t}</div>`).join('');
-}
-function pickDate(y,m,d){ pickedDate=new Date(y,m,d); rCal(); rTime(); }
-function cNav(dir){ cM+=dir; if(cM>11){cM=0;cY++;} if(cM<0){cM=11;cY--;} rCal(); }
-
-// ===================== NAV =====================
-function go(s) {
-  if(s===2 && step===1){
-    const nm=document.getElementById('i-name').value.trim(), ph=document.getElementById('i-phone').value.trim(), em=document.getElementById('i-email').value.trim();
-    if(!nm||!ph||!em){ alert(L==='lv'?'Lūdzu, aizpildiet visus laukus':'Пожалуйста, заполните все поля'); return; }
-    // ── Lead Capture: отправляем лида при переходе на шаг 2 ──
-    fetch(WEBHOOK_LEAD, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({ name: nm, phone: ph, email: em, lang: L, source: 'booking_form', created_at: new Date().toISOString() }),
-      mode: 'no-cors'
-    }).catch(()=>{});
-  }
-  if(s===3 && step===2){
-    if(!pickedSvc||!pickedDoc){ alert(L==='lv'?'Lūdzu, izvēlieties pakalpojumu un ārstu':'Выберите услугу и врача'); return; }
-  }
-  document.querySelectorAll('.card').forEach(c=>c.classList.add('hide'));
-  document.getElementById('s'+s).classList.remove('hide');
-  for(let i=1;i<=3;i++){
-    const e=document.getElementById('p'+i);
-    e.className=i<s?'ok':i===s?'now':'';
-  }
-  step=s;
-}
-
-// ===================== SUBMIT =====================
-async function submit() {
-  if(!pickedDate||!pickedTime){ alert(L==='lv'?'Lūdzu, izvēlieties datumu un laiku':'Выберите дату un laiku'); return; }
-  const btn=document.getElementById('btn-ok');
-  btn.innerHTML='<span class="spin"></span>'+(L==='lv'?'Apstrādā...':'Обработка...');
-  btn.disabled=true;
-
-  const svc=SVC.find(s=>s.id===pickedSvc), doc=DOC.find(d=>d.id===pickedDoc);
-  const dateStr=pickedDate.toISOString().split('T')[0];
-  const booking = {
-    name: document.getElementById('i-name').value.trim(),
-    phone: document.getElementById('i-phone').value.trim(),
-    email: document.getElementById('i-email').value.trim(),
-    service_id: pickedSvc,
-    service_name: svc[L],
-    doctor_id: pickedDoc,
-    doctor_name: doc.name,
-    date: dateStr,
-    time: pickedTime,
-    token: token,
-    lang: L,
-    booked_at: new Date().toISOString()
-  };
-
-  try { await fetch(WEBHOOK_BOOKING,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(booking),mode:'no-cors'}); } catch(e){}
-
-  // success screen
-  document.querySelectorAll('.card').forEach(c=>c.classList.add('hide'));
-  document.getElementById('s4').classList.remove('hide');
-  document.querySelectorAll('.prog i').forEach(p=>p.className='ok');
-
-  const lb={lv:{s:'Pakalpojums',d:'Ārsts',dt:'Datums',t:'Laiks'},ru:{s:'Услуга',d:'Врач',dt:'Дата',t:'Время'}}[L];
-  const fd=pickedDate.toLocaleDateString(L==='lv'?'lv-LV':'ru-RU',{weekday:'long',day:'numeric',month:'long'});
-  document.getElementById('summ').innerHTML=`
-    <div class="r"><span class="l">${lb.s}</span><span class="v">${svc[L]}</span></div>
-    <div class="r"><span class="l">${lb.d}</span><span class="v">${doc.name}</span></div>
-    <div class="r"><span class="l">${lb.dt}</span><span class="v">${fd}</span></div>
-    <div class="r"><span class="l">${lb.t}</span><span class="v">${pickedTime}</span></div>`;
-}
-
-// ===================== INIT =====================
-const now=new Date(); cY=now.getFullYear(); cM=now.getMonth();
-setLang('lv'); rTime();
+let L='lv';
+function setL(l){L=l;document.querySelectorAll('.L button').forEach(b=>b.classList.toggle('on',b.textContent===(l==='lv'?'LAT':'РУС')));document.querySelectorAll('[data-lv]').forEach(e=>{const v=e.getAttribute('data-'+l);if(e.tagName==='A'&&e.getAttribute('href'))e.textContent=v;else e.innerHTML=v})}
+setL('lv');
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('v');obs.unobserve(x.target)}})},{threshold:.1});
+document.querySelectorAll('.an').forEach(el=>obs.observe(el));
 </script>
 </body>
 </html>
