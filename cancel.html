@@ -83,7 +83,7 @@
 </div>
 
 <script>
-const WEBHOOK = 'https://demmssss.app.n8n.cloud/webhook-test/cancel-booking';
+const WEBHOOK = 'https://demmssss.app.n8n.cloud/webhook/cancel-booking';
 const token = new URLSearchParams(location.search).get('token') || '';
 let L = 'lv';
 
@@ -106,7 +106,7 @@ async function doCancel() {
     await fetch(WEBHOOK, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ token: token }),
+      body: JSON.stringify({ cancel_token: token }),
       mode: 'no-cors'
     });
     document.getElementById('s1').classList.add('hide');
